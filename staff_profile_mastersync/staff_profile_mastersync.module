@@ -140,9 +140,11 @@ function staff_profile_mastersync_profile_from_database () {
 
     $count++;
   }
+  //$nids = \Drupal::entityQuery('node')->condition('type','staff_profile')->execute();
+  //$nodes =  Node::loadMultiple($nids);
 
   foreach ($nodes as $node) {
-    if ($node->get('field_unpublish_on_sync')) {
+    if ($node->get('field_unpublish_on_sync')->value) {
       $node->set('field_unpublish_on_sync', FALSE);
       $node->setUnpublished();
       $node->save();
