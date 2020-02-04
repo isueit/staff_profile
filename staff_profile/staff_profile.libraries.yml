@@ -1,0 +1,10 @@
+staff_profile:
+  version: 1.x
+  css:
+    layout:
+      css/staff_profile.css: {}
+staff_profile_edit:
+  version: 1.x
+  css:
+    layout:
+      css/staff_profile_edit.css: {}
