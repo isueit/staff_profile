@@ -41,6 +41,7 @@ function staff_profile_mastersync_profile_from_database () {
   $results = sqlsrv_query($dbhandle, 'dbo.Staff_GetFullDirectory');
   if ($results === false) {
     \Drupal::logger('staff_profile_mastersync')->error(print_r(sqlsrv_errors(), true));
+    sqlsrv_close($dbhandle);
     return;
   }
 //\Drupal::logger('staff_profile_mastersync')->info('Count: ' . sqlsrv_num_rows($results));
@@ -48,12 +49,11 @@ function staff_profile_mastersync_profile_from_database () {
   // Unpublish all published nodes from the Staff Directory Database
   foreach ($nodes as $node) {
     if ($node->isPublished() && !empty($node->field_staffid->value)) {
-      $node->setUnpublished()->save();
+      $node->set('field_unpublish_on_sync', TRUE)->save();
     }
   }
 
-
-$count = 0;
+  $count = 0;
   while ($profile = sqlsrv_fetch_object($results)) {
 
     $mynode = '';
@@ -134,10 +134,19 @@ $count = 0;
       }
     }
 
+    $mynode->set('field_unpublish_on_sync', FALSE);
     $mynode->setPublished();
     $mynode->save();
 
     $count++;
+  }
+
+  foreach ($nodes as $node) {
+    if ($node->get('field_unpublish_on_sync')) {
+      $node->set('field_unpublish_on_sync', FALSE);
+      $node->setUnpublished();
+      $node->save();
+    }
   }
 
   sqlsrv_close($dbhandle);
