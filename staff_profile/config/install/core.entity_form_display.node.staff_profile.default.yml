@@ -76,7 +76,6 @@ third_party_settings:
       region: content
     group_more_from_staff_directory:
       children:
-        - field_staffid
         - field_email
         - field_netid
         - field_addr
@@ -257,20 +256,6 @@ content:
     third_party_settings: {  }
     type: number
     region: content
-  field_staffid:
-    weight: 14
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_unpublish_on_sync:
-    weight: 11
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_working_title:
     weight: 12
     settings:
@@ -302,7 +287,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 12
+    weight: 11
     region: content
     third_party_settings: {  }
   sticky:
@@ -341,4 +326,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_staffid: true
+  field_unpublish_on_sync: true
