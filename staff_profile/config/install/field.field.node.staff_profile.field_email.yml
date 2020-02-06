@@ -9,7 +9,7 @@ field_name: field_email
 entity_type: node
 bundle: staff_profile
 label: Email
-description: ''
+description: 'Value here will be overwritten, final value will be netID@iastate.edu'
 required: false
 translatable: false
 default_value: {  }

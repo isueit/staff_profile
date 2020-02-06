@@ -9,7 +9,7 @@ field_name: field_staffid
 entity_type: node
 bundle: staff_profile
 label: StaffID
-description: ''
+description: 'ID number from the Staff Database. Used by the sync process. Can remove this value, but should never change it to a different number.'
 required: false
 translatable: false
 default_value: {  }
