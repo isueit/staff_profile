@@ -164,3 +164,16 @@ function staff_profile_preprocess_views_view(&$variables) {
     $variables['#attached']['library'][] = 'staff_profile_mastersync/staff_directory';
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function staff_profile_mastersync_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // Set Many fields to readonly when user does't have "edit any staff_profile content" permission
+  $user = \Drupal::currentUser();
+  if (!$user->hasPermission('edit any staff_profile content')) {
+    // Mark fields as readonly, may want to move this to a function in staff_profile module...
+    $form['field_last_name']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+    $form['field_first_name']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+  }
+}
