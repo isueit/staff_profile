@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+
 /*
  * Implements hook_preprocess_node()
  */
@@ -21,5 +24,36 @@ function staff_profile_form_node_form_alter(&$form, &$form_state, $form_id) {
   if ($node->getType() == 'staff_profile') {
    /* var_dump($node);*/
     $form['#attached']['library'][] = 'staff_profile/staff_profile_edit';
+    $form['#validate'][] = 'staff_profile_form_node_validate';
+  }
+}
+
+/**
+ * Validiate function for staff_profile node create/edit form
+ */
+function staff_profile_form_node_validate(&$form, FormStateInterface $form_state) {
+  \Drupal::logger('staff_profile')->info('In Staff Profile form validate function: ');
+
+  // Check if it's a new node, and if not, get the existing netID
+  $is_new_node = TRUE;
+  $nid = $form_state->getFormObject()->getEntity()->id();
+  if (!empty($nid)) {
+    $is_new_node = FALSE;
+    $node = Node::load($nid);
+    $old_netid = $node->field_netid->value;
+  }
+
+  // Get the new netID from the form, then set email address
+  $new_netid = $form_state->getValue('field_netid')[0]['value'];
+  $form_state->setValue(array('field_email', 0, 'value'), $new_netid . '@iastate.edu');
+
+  // If it's a new node, or the netID changed, then make sure this netID doesn't already have a node
+  if ($is_new_node || $old_netid != $new_netid) {
+    $nids = \Drupal::entityQuery('node')->condition('type','staff_profile')
+      ->condition('field_netid', $new_netid)
+      ->execute();
+    if (!empty($nids)) {
+      $form_state->setErrorByName('field_netID', 'We already have a profile for netID ' . $new_netid);
+    }
   }
 }
