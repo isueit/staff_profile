@@ -37,7 +37,7 @@ function staff_profile_form_node_form_alter(&$form, &$form_state, $form_id) {
  * Validiate function for staff_profile node create/edit form
  */
 function staff_profile_form_node_validate(&$form, FormStateInterface $form_state) {
-  \Drupal::logger('staff_profile')->info('In Staff Profile form validate function: ');
+  $old_staffid = '';
 
   // Check if it's a new node, and if not, get the existing netID
   $is_new_node = TRUE;
@@ -46,6 +46,13 @@ function staff_profile_form_node_validate(&$form, FormStateInterface $form_state
     $is_new_node = FALSE;
     $node = Node::load($nid);
     $old_netid = $node->field_netid->value;
+    $old_staffid = !empty($node->field_staffid->value) ? $node->field_staffid->value : '';
+  }
+
+  // Can only change Staff ID to a blank value, all others come from the feed
+  $new_staffid = $form_state->getValue('field_staffid')[0]['value'];
+  if (!empty($new_staffid) && intval($new_staffid) > 0) {
+    $form_state->setValue(array('field_staffid', 0, 'value'), $old_staffid);
   }
 
   // Get the new netID from the form, then set email address
