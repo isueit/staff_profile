@@ -54,11 +54,10 @@ third_party_settings:
       weight: 21
       format_type: accordion_item
       format_settings:
+        formatter: closed
+        required_fields: true
         id: ''
         classes: ''
-        formatter: open
-        required_fields: true
-        description: ''
       label: Name
       region: content
     group_from_staff_directory:
