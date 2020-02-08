@@ -55,8 +55,13 @@ function staff_profile_form_node_validate(&$form, FormStateInterface $form_state
     $form_state->setValue(array('field_staffid', 0, 'value'), $old_staffid);
   }
 
-  // Get the new netID from the form, then set email address
+  // Get the new netID from the form, truncating it if there is a @ in the string
   $new_netid = $form_state->getValue('field_netid')[0]['value'];
+  $tmp_arr = explode("@", $new_netid, 2);
+  $new_netid = $tmp_arr[0];
+
+  // Now that we have the (truncated) netID, we can set the netID and build the email address
+  $form_state->setValue(array('field_netid', 0, 'value'), $new_netid);
   $form_state->setValue(array('field_email', 0, 'value'), $new_netid . '@iastate.edu');
 
   // If it's a new node, or the netID changed, then make sure this netID doesn't already have a node
