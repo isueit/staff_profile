@@ -75,8 +75,8 @@ third_party_settings:
       region: content
     group_more_from_staff_directory:
       children:
-        - field_email
         - field_netid
+        - field_email
         - field_addr
         - field_phone
         - field_fax
@@ -139,38 +139,38 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_addr:
-    weight: 17
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
   field_base_county:
-    weight: 26
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_college:
-    weight: 22
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_counties_served:
-    weight: 27
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_departmentid:
-    weight: 23
+    weight: 24
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_email:
-    weight: 15
+    weight: 17
     settings:
       size: 60
       placeholder: ''
@@ -178,7 +178,7 @@ content:
     type: email_default
     region: content
   field_fax:
-    weight: 19
+    weight: 20
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -193,7 +193,7 @@ content:
     type: string_textfield
     region: content
   field_job_title:
-    weight: 25
+    weight: 26
     settings:
       size: 60
       placeholder: ''
@@ -209,7 +209,7 @@ content:
     type: string_textfield
     region: content
   field_location:
-    weight: 21
+    weight: 22
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -223,7 +223,7 @@ content:
     type: string_textfield
     region: content
   field_phone:
-    weight: 18
+    weight: 19
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -245,13 +245,13 @@ content:
     type: telephone_default
     region: content
   field_program_areas:
-    weight: 24
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_region:
-    weight: 20
+    weight: 21
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -259,14 +259,14 @@ content:
     region: content
   field_staffid:
     type: number
-    weight: 28
+    weight: 29
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_unpublish_on_sync:
     type: boolean_checkbox
-    weight: 29
+    weight: 30
     region: content
     settings:
       display_label: true
