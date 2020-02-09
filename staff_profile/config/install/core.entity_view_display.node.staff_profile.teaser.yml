@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.staff_profile.field_preferred_phone
     - field.field.node.staff_profile.field_program_areas
     - field.field.node.staff_profile.field_region
+    - field.field.node.staff_profile.field_sort_order
     - field.field.node.staff_profile.field_staffid
     - field.field.node.staff_profile.field_unpublish_on_sync
     - field.field.node.staff_profile.field_working_title
@@ -64,6 +65,7 @@ hidden:
   field_preferred_phone: true
   field_program_areas: true
   field_region: true
+  field_sort_order: true
   field_staffid: true
   field_unpublish_on_sync: true
   field_working_title: true

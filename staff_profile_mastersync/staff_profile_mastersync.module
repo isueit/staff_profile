@@ -178,5 +178,10 @@ function staff_profile_mastersync_form_node_form_alter(&$form, &$form_state, $fo
     if (!$user->hasPermission('edit any staff_profile content') && !empty($node->field_staffid->value)) {
       staff_profile_mark_database_fields_readonly($form);
     }
+    // Disable Sort order, not needed on the mastersync site
+    $form['field_sort_order']['widget'][0]['value']['#access'] = FALSE;
+    $form['field_sort_order']['widget'][0]['value']['#disabled'] = TRUE;
+    $form['field_sort_order']['widget'][0]['value']['#description'] = 'Sort order isn\'t used on this site, so it\'s disabled.';
+
   }
 }

@@ -20,6 +20,7 @@ dependencies:
     - field.field.node.staff_profile.field_preferred_phone
     - field.field.node.staff_profile.field_program_areas
     - field.field.node.staff_profile.field_region
+    - field.field.node.staff_profile.field_sort_order
     - field.field.node.staff_profile.field_staffid
     - field.field.node.staff_profile.field_unpublish_on_sync
     - field.field.node.staff_profile.field_working_title
@@ -31,6 +32,7 @@ dependencies:
     - scheduler
     - telephone
     - text
+    - weight
 third_party_settings:
   field_group:
     group_main_accordion:
@@ -134,7 +136,7 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -238,7 +240,7 @@ content:
     type: string_textfield
     region: content
   field_preferred_phone:
-    weight: 15
+    weight: 14
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -257,6 +259,12 @@ content:
     third_party_settings: {  }
     type: number
     region: content
+  field_sort_order:
+    type: weight_selector
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_staffid:
     type: number
     weight: 29
@@ -281,7 +289,7 @@ content:
     region: content
   path:
     type: path
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -289,12 +297,12 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 6
     region: content
     third_party_settings: {  }
   publish_on:
     type: datetime_timestamp_no_default
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -302,14 +310,14 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 12
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 6
+    weight: 7
     region: content
     third_party_settings: {  }
   title:
@@ -322,7 +330,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -332,12 +340,12 @@ content:
     third_party_settings: {  }
   unpublish_on:
     type: datetime_timestamp_no_default
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }

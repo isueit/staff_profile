@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sort_order
+    - node.type.staff_profile
+  module:
+    - weight
+id: node.staff_profile.field_sort_order
+field_name: field_sort_order
+entity_type: node
+bundle: staff_profile
+label: 'Sort Order'
+description: 'Smaller numbers before larger ones. Range -20 thru 20'
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings:
+  range: '20'
+field_type: weight
