@@ -9,3 +9,4 @@ dependencies:
   - encrypt:encrypt
   - key:key
   - real_aes:real_aes
+  - drupal:rest
