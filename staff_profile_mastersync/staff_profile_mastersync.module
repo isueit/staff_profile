@@ -24,12 +24,11 @@ function staff_profile_mastersync_profile_from_database () {
     return;
   }
 
-  $db_database = $mastersync_config->get('db_database');
-  $db_username = $mastersync_config->get('db_username');
-  $db_server = $mastersync_config->get('db_address');
-
   $encrypt_profile = EncryptionProfile::load($mastersync_config->get('sync_encrypt_profile'));
   $db_password = \Drupal::service('encryption')->decrypt( $mastersync_config->get('db_password'), $encrypt_profile);
+  $db_database = \Drupal::service('encryption')->decrypt($mastersync_config->get('db_database'), $encrypt_profile);
+  $db_username = \Drupal::service('encryption')->decrypt($mastersync_config->get('db_username'), $encrypt_profile);
+  $db_server = \Drupal::service('encryption')->decrypt($mastersync_config->get('db_address'), $encrypt_profile);
 
 
   // Query the staff profiles from the database

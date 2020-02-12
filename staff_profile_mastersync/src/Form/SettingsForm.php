@@ -43,11 +43,10 @@ class SettingsForm extends ConfigFormBase {
       $form['db_username'] = array(
         '#type' => 'textfield',
         '#title' => $this->t('Database Username'),
-        '#description' => $this->t('The username used to connect to the staff database.'),
+        '#description' => $this->t('The username used to connect to the staff database. Field will appear empty, even when a value is already saved in config.'),
         '#maxlength' => 64,
         '#size' => 64,
-        '#default_value' => $config->get('db_username'),
-        '#required' => TRUE,
+        '#default_value' => $this->t(''),
       );
       $form['db_password'] = array(
         '#type' => 'password',
@@ -59,20 +58,18 @@ class SettingsForm extends ConfigFormBase {
       $form['db_server_url'] = array(
         '#type' => 'textfield',
         '#title' => $this->t('Database URL'),
-        '#description' => $this->t('The url used to connect to the staff database.'),
+        '#description' => $this->t('The url used to connect to the staff database. Field will appear empty, even when a value is already saved in config.'),
         '#maxlength' => 64,
         '#size' => 64,
-        '#default_value' => $config->get('db_address'),
-        '#required' => TRUE,
+        '#default_value' => $this->t(''),
       );
       $form['database'] = array(
         '#type' => 'textfield',
         '#title' => $this->t('Database Name'),
-        '#description' => $this->t('The database containing the staff profiles.'),
+        '#description' => $this->t('The database containing the staff profiles. Field will appear empty, even when a value is already saved in config.'),
         '#maxlength' => 64,
         '#size' => 64,
-        '#default_value' => $config->get('db_database'),
-        '#required' => TRUE,
+        '#default_value' => $this->t(''),
       );
 
       $form['smugmug_pwd'] = array(
@@ -123,31 +120,15 @@ class SettingsForm extends ConfigFormBase {
       parent::validateForm($form, $form_state);
 
       $config = $this->config('staff_profile_mastersync.settings');
-      $saved_pwd = $config->get('db_password');
-      $new_pwd = $form_state->getValue('db_password');
       $encrypt_profile = EncryptionProfile::load($form_state->getValue('encrypt_profile'));
 
-      if (empty($new_pwd)) {
-        $form_state->setValue('db_password', $saved_pwd);
-      } else {
-        $form_state->setValue('db_password', \Drupal::service('encryption')->encrypt($new_pwd, $encrypt_profile));
-      }
+      $form_state->setValue('db_password', $this->getHiddenFormFieldValue($config->get('db_password'), $form_state->getValue('db_password'), $encrypt_profile));
+      $form_state->setValue('db_username', $this->getHiddenFormFieldValue($config->get('db_username'), $form_state->getValue('db_username'), $encrypt_profile));
+      $form_state->setValue('db_server_url', $this->getHiddenFormFieldValue($config->get('db_address'), $form_state->getValue('db_server_url'), $encrypt_profile));
+      $form_state->setValue('database', $this->getHiddenFormFieldValue($config->get('db_database'), $form_state->getValue('database'), $encrypt_profile));
 
-      $saved_pwd_smug = $config->get('smug_mug_password');
-      $new_pwd_smug = $form_state->getValue('smugmug_pwd');
-      if (empty($new_pwd_smug)) {
-        $form_state->setValue('smugmug_pwd', $saved_pwd_smug);
-      } else {
-        $form_state->setValue('smugmug_pwd', \Drupal::service('encryption')->encrypt($new_pwd_smug, $encrypt_profile));
-      }
-
-      $saved_api_smug = $config->get('smug_mug_api_key');
-      $new_api_smug = $form_state->getValue('smugmug_api');
-      if (empty($new_api_smug)) {
-        $form_state->setValue('smugmug_api', $saved_api_smug);
-      } else {
-        $form_state->setValue('smugmug_api', \Drupal::service('encryption')->encrypt($new_api_smug, $encrypt_profile));
-      }
+      $form_state->setValue('smugmug_pwd', $this->getHiddenFormFieldValue($config->get('smug_mug_password'), $form_state->getValue('smugmug_pwd'), $encrypt_profile));
+      $form_state->setValue('smugmug_api', $this->getHiddenFormFieldValue($config->get('smug_mug_api_key'), $form_state->getValue('smugmug_api'), $encrypt_profile));
     }
 
     /**
@@ -167,5 +148,18 @@ class SettingsForm extends ConfigFormBase {
         ->set('sync_encrypt_profile', $form_state->getValue('encrypt_profile'))
         ->save();
 
+  }
+
+  /*
+   * Function to get the hidden value of a form field
+   */
+  private function getHiddenFormFieldValue($oldvalue, $newvalue, $encrypt_profile) {
+    $return_value = $oldvalue;
+
+    if (!empty($newvalue)) {
+      $return_value = \Drupal::service('encryption')->encrypt($newvalue, $encrypt_profile);
+    }
+
+    return $return_value;
   }
 }
