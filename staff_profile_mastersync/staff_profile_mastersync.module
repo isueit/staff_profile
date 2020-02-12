@@ -95,15 +95,6 @@ function staff_profile_mastersync_profile_from_database () {
       $mynode->field_preferred_name->value = $profile->FirstName;
       $mynode->field_preferred_phone->value = $profile->Phone;
       $mynode->field_working_title = $jobtitle;
-
-      // Set the owner of the new node, will probably need to create the user
-      $users =\Drupal::entityTypeManager()->getStorage('user')->loadByProperties(array('name' => $mynode->field_netid->value));
-      $owner = reset($users);
-      if (!$owner) {
-        $owner = User::create(array('name' => $mynode->field_netid, 'email' => $profile->email->value, 'pass' => Random::string(40)));
-        $owner->activate()->save();
-      }
-      $mynode->setOwner($owner);
     }
 
     $mynode->field_staffid->value = $profile->StaffID;
@@ -195,5 +186,21 @@ function staff_profile_mastersync_form_node_form_alter(&$form, &$form_state, $fo
     $form['field_sort_order']['widget'][0]['value']['#disabled'] = TRUE;
     $form['field_sort_order']['widget'][0]['value']['#description'] = 'Sort order isn\'t used on this site, so it\'s disabled.';
 
+  }
+}
+
+/*
+ * Implements hook_ENTITY_TYPE_presave()
+ */
+function staff_profile_node_presave($entity) {
+  if ($entity->getType() == 'staff_profile' && $entity->isNew()) {
+    // Set the owner of the new node, will probably need to create the user
+    $users =\Drupal::entityTypeManager()->getStorage('user')->loadByProperties(array('name' => $entity->field_netid->value));
+    $owner = reset($users);
+    if (!$owner) {
+      $owner = User::create(array('name' => $entity->field_netid, 'mail' => $entity->field_email, 'pass' => Random::string(40)));
+      $owner->activate()->save();
+    }
+    $entity->setOwner($owner);
   }
 }
