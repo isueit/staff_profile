@@ -17,13 +17,14 @@ function staff_profile_mastersync_profile_from_database () {
   $nids = \Drupal::entityQuery('node')->condition('type','staff_profile')->execute();
   $nodes =  Node::loadMultiple($nids);
 
+  // Get the config, and make sure it looks complete
   $mastersync_config = \Drupal::config('staff_profile_mastersync.settings');
-
   if (empty($mastersync_config->get('db_password'))) {
-    \Drupal::logger('staff_profile_mastersync')->warning('Configuration not found');
+    \Drupal::logger('staff_profile_mastersync')->warning('Doesn\'t look like Staff Profile mastersync is configured properly in the settings form.');
     return;
   }
 
+  // Get the database login informatio out of config
   $encrypt_profile = EncryptionProfile::load($mastersync_config->get('sync_encrypt_profile'));
   $db_password = \Drupal::service('encryption')->decrypt( $mastersync_config->get('db_password'), $encrypt_profile);
   $db_database = \Drupal::service('encryption')->decrypt($mastersync_config->get('db_database'), $encrypt_profile);
@@ -37,13 +38,27 @@ function staff_profile_mastersync_profile_from_database () {
     \Drupal::logger('staff_profile_mastersync')->error('Couldn\'t connect to SQL Server on ' . $db_server);
     return;
   }
+
+  // Make sure we can read from the database
   $results = sqlsrv_query($dbhandle, 'dbo.Staff_GetFullDirectory');
   if ($results === false) {
     \Drupal::logger('staff_profile_mastersync')->error(print_r(sqlsrv_errors(), true));
     sqlsrv_close($dbhandle);
     return;
   }
-//\Drupal::logger('staff_profile_mastersync')->info('Count: ' . sqlsrv_num_rows($results));
+
+  // Read all the profiles into an array
+  $profiles = array();
+  while ($profile = sqlsrv_fetch_object($results)) {
+    $profiles[] = $profile;
+  }
+  sqlsrv_close($dbhandle);
+
+  // Make sure we have the minimum number of staff from the database. If not, the database may not have gotten populated correctly
+  if (count($profiles) < $mastersync_config->get('minimum_staff')) {
+    \Drupal::logger('staff_profile_mastersync')->info('Expected records: ' . $mastersync_config->get('minimum_staff') . ' Received: ' . count($profiles) . ' - Something could be wrong, so exiting import of records');
+    return;
+  }
 
   // Unpublish all published nodes from the Staff Directory Database
   foreach ($nodes as $node) {
@@ -53,8 +68,9 @@ function staff_profile_mastersync_profile_from_database () {
   }
 
   $count = 0;
-  while ($profile = sqlsrv_fetch_object($results)) {
+  foreach($profiles as $profile) {
 
+    // Find the node that matches the profile, if one exists
     $mynode = '';
     foreach ($nodes as $node) {
       if (strtolower($node->field_email->value) == strtolower($profile->email)) {
@@ -139,8 +155,6 @@ function staff_profile_mastersync_profile_from_database () {
 
     $count++;
   }
-  //$nids = \Drupal::entityQuery('node')->condition('type','staff_profile')->execute();
-  //$nodes =  Node::loadMultiple($nids);
 
   foreach ($nodes as $node) {
     if ($node->get('field_unpublish_on_sync')->value) {
@@ -150,7 +164,6 @@ function staff_profile_mastersync_profile_from_database () {
     }
   }
 
-  sqlsrv_close($dbhandle);
   \Drupal::logger('staff_profile_mastersync')->info('Staff from Staff Directory Database: ' . $count);
 }
 
