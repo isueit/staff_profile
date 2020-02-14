@@ -17,7 +17,7 @@ id: node.staff_profile.body
 field_name: body
 entity_type: node
 bundle: staff_profile
-label: 'Bibliography/Area(s) of Expertise'
+label: 'Biography/Area(s) of Expertise'
 description: ''
 required: false
 translatable: true
