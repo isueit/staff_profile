@@ -10,3 +10,4 @@ dependencies:
   - key:key
   - real_aes:real_aes
   - drupal:rest
+  - views_filters_populate:views_filters_populate
