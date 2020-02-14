@@ -193,7 +193,7 @@ function staff_profile_mastersync_form_node_form_alter(&$form, &$form_state, $fo
  * Implements hook_ENTITY_TYPE_presave()
  */
 function staff_profile_node_presave($entity) {
-  if ($entity->getType() == 'staff_profile' && $entity->isNew()) {
+  if ($entity->getType() == 'staff_profile') {
     // Set the owner of the new node, will probably need to create the user
     $users =\Drupal::entityTypeManager()->getStorage('user')->loadByProperties(array('name' => $entity->field_netid->value));
     $owner = reset($users);
@@ -202,5 +202,6 @@ function staff_profile_node_presave($entity) {
       $owner->activate()->save();
     }
     $entity->setOwner($owner);
+    $entity->setTitle($entity->field_preferred_name->value . ' ' . $entity->field_last_name->value);
   }
 }

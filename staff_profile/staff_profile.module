@@ -80,6 +80,7 @@ function staff_profile_form_node_validate(&$form, FormStateInterface $form_state
  * Mark fields from staff directory database as readonly on the staff_profile node edit form
  */
 function staff_profile_mark_database_fields_readonly(&$form) {
+  $form['title']['widget']['#disabled'] = TRUE;
   $form['field_first_name']['widget'][0]['value']['#disabled'] = TRUE;
   $form['field_last_name']['widget'][0]['value']['#disabled'] = TRUE;
   $form['field_netid']['widget'][0]['value']['#disabled'] = TRUE;
