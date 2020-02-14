@@ -24,7 +24,7 @@ third_party_settings:
 name: 'Staff Profile'
 type: staff_profile
 description: ''
-help: ''
+help: '<h3>Important</h3>Many fields will be grayed out because this information comes from other sources. Changes to these fields would be overwritten the next time information was pulled into this record. See <a href="https://my.extension.iastate.edu/extension-staff-directory" target="_blank">https://my.extension.iastate.edu/extension-staff-directory</a> to learn more about how to change these fields.</div>'
 new_revision: true
 preview_mode: 1
 display_submitted: false
