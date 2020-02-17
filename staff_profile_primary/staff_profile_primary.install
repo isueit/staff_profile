@@ -6,7 +6,7 @@ use \Drupal\taxonomy_import\Form\ImportForm;
 /**
  * Implements hook_install()
  */
-function staff_profile_mastersync_install() {
+function staff_profile_primary_install() {
   // Set homepage to the search staff page
   $config = \Drupal::configFactory()->getEditable('system.site');
   $config->set('page.front', '/search_staff')->save();

@@ -1,4 +1,4 @@
-name: 'Staff Profile Master Sync'
+name: 'Staff Profile Primary'
 type: module
 core: 8.x
 description: 'Reads from Staff Directory Database, and populates Staff Profiles'

@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.staff_profile_primary
+  module:
+    - real_aes
+id: staff_profile_primary
+label: 'Staff Profile Primary'
+encryption_method: real_aes
+encryption_key: staff_profile_primary
+encryption_method_configuration: {  }

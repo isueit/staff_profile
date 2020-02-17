@@ -8,41 +8,41 @@ use \Drupal\encrypt\Entity\EncryptionProfile;
 /**
  * Implements hook_rebuild()
  */
-function staff_profile_mastersync_rebuild() {
-  staff_profile_mastersync_profile_from_database();
+function staff_profile_primary_rebuild() {
+  staff_profile_primary_profile_from_database();
 }
 
-function staff_profile_mastersync_profile_from_database () {
+function staff_profile_primary_profile_from_database () {
   // Get all Staff Profile nodes
   $nids = \Drupal::entityQuery('node')->condition('type','staff_profile')->execute();
   $nodes =  Node::loadMultiple($nids);
 
   // Get the config, and make sure it looks complete
-  $mastersync_config = \Drupal::config('staff_profile_mastersync.settings');
-  if (empty($mastersync_config->get('db_password'))) {
-    \Drupal::logger('staff_profile_mastersync')->warning('Doesn\'t look like Staff Profile mastersync is configured properly in the settings form.');
+  $primary_config = \Drupal::config('staff_profile_primary.settings');
+  if (empty($primary_config->get('db_password'))) {
+    \Drupal::logger('staff_profile_primary')->warning('Doesn\'t look like Staff Profile primary is configured properly in the settings form.');
     return;
   }
 
   // Get the database login informatio out of config
-  $encrypt_profile = EncryptionProfile::load($mastersync_config->get('sync_encrypt_profile'));
-  $db_password = \Drupal::service('encryption')->decrypt( $mastersync_config->get('db_password'), $encrypt_profile);
-  $db_database = \Drupal::service('encryption')->decrypt($mastersync_config->get('db_database'), $encrypt_profile);
-  $db_username = \Drupal::service('encryption')->decrypt($mastersync_config->get('db_username'), $encrypt_profile);
-  $db_server = \Drupal::service('encryption')->decrypt($mastersync_config->get('db_address'), $encrypt_profile);
+  $encrypt_profile = EncryptionProfile::load($primary_config->get('sync_encrypt_profile'));
+  $db_password = \Drupal::service('encryption')->decrypt( $primary_config->get('db_password'), $encrypt_profile);
+  $db_database = \Drupal::service('encryption')->decrypt($primary_config->get('db_database'), $encrypt_profile);
+  $db_username = \Drupal::service('encryption')->decrypt($primary_config->get('db_username'), $encrypt_profile);
+  $db_server = \Drupal::service('encryption')->decrypt($primary_config->get('db_address'), $encrypt_profile);
 
 
   // Query the staff profiles from the database
   $dbhandle = sqlsrv_connect($db_server, array('Database' => $db_database, 'UID' => $db_username, 'PWD' => $db_password));
   if ($dbhandle === FALSE) {
-    \Drupal::logger('staff_profile_mastersync')->error('Couldn\'t connect to SQL Server on ' . $db_server);
+    \Drupal::logger('staff_profile_primary')->error('Couldn\'t connect to SQL Server on ' . $db_server);
     return;
   }
 
   // Make sure we can read from the database
   $results = sqlsrv_query($dbhandle, 'dbo.Staff_GetFullDirectory');
   if ($results === false) {
-    \Drupal::logger('staff_profile_mastersync')->error(print_r(sqlsrv_errors(), true));
+    \Drupal::logger('staff_profile_primary')->error(print_r(sqlsrv_errors(), true));
     sqlsrv_close($dbhandle);
     return;
   }
@@ -55,8 +55,8 @@ function staff_profile_mastersync_profile_from_database () {
   sqlsrv_close($dbhandle);
 
   // Make sure we have the minimum number of staff from the database. If not, the database may not have gotten populated correctly
-  if (count($profiles) < $mastersync_config->get('minimum_staff')) {
-    \Drupal::logger('staff_profile_mastersync')->info('Expected records: ' . $mastersync_config->get('minimum_staff') . ' Received: ' . count($profiles) . ' - Something could be wrong, so exiting import of records');
+  if (count($profiles) < $primary_config->get('minimum_staff')) {
+    \Drupal::logger('staff_profile_primary')->info('Expected records: ' . $primary_config->get('minimum_staff') . ' Received: ' . count($profiles) . ' - Something could be wrong, so exiting import of records');
     return;
   }
 
@@ -155,23 +155,23 @@ function staff_profile_mastersync_profile_from_database () {
     }
   }
 
-  \Drupal::logger('staff_profile_mastersync')->info('Staff from Staff Directory Database: ' . $count);
+  \Drupal::logger('staff_profile_primary')->info('Staff from Staff Directory Database: ' . $count);
 }
 
 /*
  * Implements hook_preprocess_views_view()
  */
-function staff_profile_preprocess_views_view(&$variables) {
+function staff_profile_primary_preprocess_views_view(&$variables) {
   $variables['#cache']['contexts'][] = 'route';
   if ($variables['view_array']['#name'] == 'staff_directory') {
-    $variables['#attached']['library'][] = 'staff_profile_mastersync/staff_directory';
+    $variables['#attached']['library'][] = 'staff_profile_primary/staff_directory';
   }
 }
 
 /**
  * Implements hook_form_alter().
  */
-function staff_profile_mastersync_form_node_form_alter(&$form, &$form_state, $form_id) {
+function staff_profile_primary_form_node_form_alter(&$form, &$form_state, $form_id) {
   // Make sure we're on the staff_profile node edit screen
   $node = $form_state->getFormObject()->getEntity();
   if ($node->getType() == 'staff_profile') {
@@ -181,7 +181,7 @@ function staff_profile_mastersync_form_node_form_alter(&$form, &$form_state, $fo
     if (!$user->hasPermission('edit any staff_profile content') && !empty($node->field_staffid->value)) {
       staff_profile_mark_database_fields_readonly($form);
     }
-    // Disable Sort order, not needed on the mastersync site
+    // Disable Sort order, not needed on the primary site
     $form['field_sort_order']['widget'][0]['value']['#access'] = FALSE;
     $form['field_sort_order']['widget'][0]['value']['#disabled'] = TRUE;
     $form['field_sort_order']['widget'][0]['value']['#description'] = 'Sort order isn\'t used on this site, so it\'s disabled.';
@@ -192,7 +192,7 @@ function staff_profile_mastersync_form_node_form_alter(&$form, &$form_state, $fo
 /*
  * Implements hook_ENTITY_TYPE_presave()
  */
-function staff_profile_node_presave($entity) {
+function staff_profile_primary_node_presave($entity) {
   if ($entity->getType() == 'staff_profile') {
     // Set the owner of the new node, will probably need to create the user
     $users =\Drupal::entityTypeManager()->getStorage('user')->loadByProperties(array('name' => $entity->field_netid->value));

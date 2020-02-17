@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\staff_profile_mastersync\Form;
+namespace Drupal\staff_profile_primary\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -15,7 +15,7 @@ class SettingsForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return [
-      'staff_profile_mastersync.settings',
+      'staff_profile_primary.settings',
     ]; }
 
   /**
@@ -29,7 +29,7 @@ class SettingsForm extends ConfigFormBase {
     * {@inheritdoc}
     */
     public function buildForm(array $form, FormStateInterface $form_state) {
-      $config = $this->config('staff_profile_mastersync.settings');
+      $config = $this->config('staff_profile_primary.settings');
       $site_vars = \Drupal::config('system.site');
       $form['minimum_staff'] = array(
         '#type' => 'number',
@@ -119,7 +119,7 @@ class SettingsForm extends ConfigFormBase {
     public function validateForm(array &$form, FormStateInterface $form_state) {
       parent::validateForm($form, $form_state);
 
-      $config = $this->config('staff_profile_mastersync.settings');
+      $config = $this->config('staff_profile_primary.settings');
       $encrypt_profile = EncryptionProfile::load($form_state->getValue('encrypt_profile'));
 
       $form_state->setValue('db_password', $this->getHiddenFormFieldValue($config->get('db_password'), $form_state->getValue('db_password'), $encrypt_profile));
@@ -137,7 +137,7 @@ class SettingsForm extends ConfigFormBase {
     public function submitForm(array &$form, FormStateInterface $form_state) {
       parent::submitForm($form, $form_state);
       //If checked, run sync
-      $this->config('staff_profile_mastersync.settings')
+      $this->config('staff_profile_primary.settings')
         ->set('minimum_staff', $form_state->getValue('minimum_staff'))
         ->set('db_username', $form_state->getValue('db_username'))
         ->set('db_password', $form_state->getValue('db_password'))

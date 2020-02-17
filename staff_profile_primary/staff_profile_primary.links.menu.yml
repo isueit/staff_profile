@@ -1,0 +1,5 @@
+staff_profile_sync.primary_settings_form:
+  title: 'Staff Profile Primary Settings'
+  route_name: staff_profile_primary.sync_settings_form
+  description: 'Change settings for Staff Profile Syncing'
+  parent: system.admin_config_system
