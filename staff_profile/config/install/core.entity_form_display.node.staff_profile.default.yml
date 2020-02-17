@@ -91,7 +91,6 @@ third_party_settings:
         - field_base_county
         - field_counties_served
         - field_staffid
-        - field_unpublish_on_sync
       parent_name: group_main_accordion
       weight: 22
       format_type: accordion_item
@@ -272,13 +271,6 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
-  field_unpublish_on_sync:
-    type: boolean_checkbox
-    weight: 30
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_working_title:
     weight: 12
     settings:
@@ -349,4 +341,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_unpublish_on_sync: true
