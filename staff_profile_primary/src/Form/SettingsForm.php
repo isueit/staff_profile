@@ -30,7 +30,6 @@ class SettingsForm extends ConfigFormBase {
     */
     public function buildForm(array $form, FormStateInterface $form_state) {
       $config = $this->config('staff_profile_primary.settings');
-      $site_vars = \Drupal::config('system.site');
       $form['minimum_staff'] = array(
         '#type' => 'number',
         '#title' => $this->t('Minimum Number of Staff'),
