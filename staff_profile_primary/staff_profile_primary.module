@@ -12,6 +12,13 @@ function staff_profile_primary_rebuild() {
   staff_profile_primary_profile_from_database();
 }
 
+/**
+ * Implements hook_cron().
+ */
+function staff_profile_primary_cron() {
+  staff_profile_primary_profile_from_database();
+}
+
 function staff_profile_primary_profile_from_database () {
   // Get all Staff Profile nodes
   $nids = \Drupal::entityQuery('node')->condition('type','staff_profile')->execute();
