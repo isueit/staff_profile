@@ -362,7 +362,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: 'First Name:'
+            label: 'Name:'
             description: ''
             use_operator: false
             operator: populate_op
@@ -391,48 +391,9 @@ display:
           filters:
             field_first_name_value: field_first_name_value
             field_preferred_name_value: field_preferred_name_value
+            field_last_name_value: field_last_name_value
+            title: title
           plugin_id: views_filters_populate
-        field_last_name_value:
-          id: field_last_name_value
-          table: node__field_last_name
-          field: field_last_name_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_last_name_value_op
-            label: 'Last Name:'
-            description: ''
-            use_operator: false
-            operator: field_last_name_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_last_name_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: string
         field_base_county_target_id:
           id: field_base_county_target_id
           table: node__field_base_county
@@ -654,25 +615,130 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
-      sorts:
+        field_last_name_value:
+          id: field_last_name_value
+          table: node__field_last_name
+          field: field_last_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 2
+          exposed: false
+          expose:
+            operator_id: field_last_name_value_op
+            label: 'Last Name:'
+            description: ''
+            use_operator: false
+            operator: field_last_name_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_last_name_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
         title:
           id: title
           table: node_field_data
           field: title
-          order: ASC
-          entity_type: node
-          entity_field: title
-          plugin_id: standard
           relationship: none
           group_type: group
           admin_label: ''
+          operator: contains
+          value: ''
+          group: 2
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+      sorts:
+        field_last_name_value:
+          id: field_last_name_value
+          table: node__field_last_name
+          field: field_last_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
           exposed: false
           expose:
             label: ''
+          plugin_id: standard
+        field_first_name_value:
+          id: field_first_name_value
+          table: node__field_first_name
+          field: field_first_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: standard
       title: 'Staff Directory Search'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "No Results Found:\r\nTry searching for just last name."
+            format: wysiwyg
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
