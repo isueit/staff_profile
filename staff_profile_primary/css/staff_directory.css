@@ -3,3 +3,13 @@ main div.form-group label {float:left; width: 20%;}
 main div.form-group input, div.form-group select {width:50%;}
 main div.item-list ul {list-style:none; padding-left:0px;}
 main div.item-list ul li {margin-bottom:10px;}
+button#edit-submit-staff-directory {background-color:#006BA6; border-color:#006BA6;}
+button#edit-submit-staff-directory:hover {background-color:#003D4C; border-color:#003D4C;}
+form#views-exposed-form-staff-directory-page-1 {padding:bottom:35px;}
+.table td, .table th {border-top:none;}
+.table {border-spacing:0px 10px; border-collapse:inherit;}
+@media screen and (max-width : 768px) {
+main div.form-group input, div.form-group select {width:65%;}
+main div.form-group label {width:35%;}
+ }
+
