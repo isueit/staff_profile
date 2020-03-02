@@ -14,4 +14,6 @@ dependencies:
   - weight:weight
   - taxonomy_import:taxonomy_import
   - field_group:field_group
+  - field_delimiter:field_delimiter
+  - field_formatter_class:field_formatter_class
   - address:address
