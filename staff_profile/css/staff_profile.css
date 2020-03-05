@@ -5,3 +5,8 @@ div.staff_profile_counties_served div.staff_profile_counties_served {width:80%; 
 
 /* Don't need to display country */
 p.address span.country {display:none;}
+
+/* Responsive Styles */
+@media screen and (max-width : 768px) {
+div.font-weight-bold {width:60%;}
+div.staff_profile_counties_served div.staff_profile_counties_served {width:100%; padding-left:0px;}
