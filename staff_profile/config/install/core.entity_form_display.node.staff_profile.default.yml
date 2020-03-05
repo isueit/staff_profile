@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.staff_profile.field_base_county
     - field.field.node.staff_profile.field_college
     - field.field.node.staff_profile.field_counties_served
+    - field.field.node.staff_profile.field_county_department_name
     - field.field.node.staff_profile.field_departmentid
     - field.field.node.staff_profile.field_email
     - field.field.node.staff_profile.field_fax
@@ -104,6 +105,7 @@ third_party_settings:
       region: content
     group_extra_staff_info:
       children:
+        - field_county_department_name
         - body
         - field_working_title
         - field_preferred_name
@@ -125,7 +127,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 11
+    weight: 125
     settings:
       rows: 9
       summary_rows: 3
@@ -162,6 +164,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_county_department_name:
+    weight: 124
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_departmentid:
     weight: 24
@@ -231,7 +241,7 @@ content:
     type: telephone_default
     region: content
   field_preferred_name:
-    weight: 13
+    weight: 127
     settings:
       size: 60
       placeholder: ''
@@ -239,7 +249,7 @@ content:
     type: string_textfield
     region: content
   field_preferred_phone:
-    weight: 14
+    weight: 128
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -272,7 +282,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_working_title:
-    weight: 12
+    weight: 126
     settings:
       size: 60
       placeholder: ''

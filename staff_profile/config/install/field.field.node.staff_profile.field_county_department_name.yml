@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_county_department_name
+    - node.type.staff_profile
+id: node.staff_profile.field_county_department_name
+field_name: field_county_department_name
+entity_type: node
+bundle: staff_profile
+label: 'County/Department Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
