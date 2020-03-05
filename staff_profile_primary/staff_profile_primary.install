@@ -16,4 +16,9 @@ function staff_profile_primary_install() {
     'edit own staff_profile content',
     'use text format basic',
   ));
+
+  // Don't let content editors "create url aliases"
+  user_role_revoke_permissions('content_editor', array(
+    'create url aliases',
+  ));
 }
