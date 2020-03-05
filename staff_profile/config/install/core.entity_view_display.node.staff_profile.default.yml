@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.staff_profile.field_base_county
     - field.field.node.staff_profile.field_college
     - field.field.node.staff_profile.field_counties_served
+    - field.field.node.staff_profile.field_county_department_name
     - field.field.node.staff_profile.field_departmentid
     - field.field.node.staff_profile.field_email
     - field.field.node.staff_profile.field_fax
@@ -39,7 +40,7 @@ third_party_settings:
         - field_email
         - field_preferred_phone
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: fieldset
       region: content
       format_settings:
@@ -56,7 +57,7 @@ third_party_settings:
         - field_base_county
         - field_counties_served
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: fieldset
       region: content
       format_settings:
@@ -72,7 +73,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -103,8 +104,20 @@ content:
     label: inline
     settings:
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      field_delimiter:
+        delimiter: ','
+      field_formatter_class:
+        class: staff_profile_counties_served
     type: entity_reference_label
+    region: content
+  field_county_department_name:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_email:
     weight: 3
@@ -146,7 +159,7 @@ content:
     type: number_integer
     region: content
   field_working_title:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       link_to_entity: false
