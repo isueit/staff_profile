@@ -1,5 +1,26 @@
-staff_profile_sync.primary_settings_form:
+staff_profile_primary.primary_settings_form:
   title: 'Staff Profile Primary Settings'
   route_name: staff_profile_primary.sync_settings_form
   description: 'Change settings for Staff Profile Syncing'
   parent: system.admin_config_system
+
+staff_profile_primary.search:
+  title: 'Search'
+  parent: main
+  menu_name: main
+  url: internal:/
+  weight: -50
+
+staff_profile_primary.view_my_profile:
+  title: 'View My Profile'
+  parent: main
+  menu_name: main
+  route_name: staff_profile_primary.view_my_profile
+  weight: 10
+
+staff_profile_primary.logout:
+  title: 'Logout'
+  parent: main
+  menu_name: main
+  url: internal:/user/logout
+  weight: 50

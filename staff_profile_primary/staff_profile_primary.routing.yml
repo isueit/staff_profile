@@ -8,3 +8,11 @@ staff_profile_primary.sync_settings_form:
     _permission: 'administer staff profile sync'
   options:
     _admin-route: TRUE
+
+staff_profile_primary.view_my_profile:
+  path: '/view_my_profile'
+  defaults:
+    _controller: '\Drupal\staff_profile_primary\Controller\ViewMyProfile::view_my_profile'
+    _title: 'View My Profile'
+  requirements:
+    _permission: 'edit own staff_profile content'
