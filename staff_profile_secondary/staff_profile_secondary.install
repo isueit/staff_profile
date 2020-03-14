@@ -9,4 +9,8 @@ function staff_profile_secondary_install() {
   user_role_grant_permissions('content_editor', array(
     'edit any staff_profile content',
   ));
+
+  user_role_revoke_permissions('content_editor', array(
+    'create staff_profile content',
+  ));
 }
