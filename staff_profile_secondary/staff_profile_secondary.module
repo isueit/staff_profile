@@ -1,0 +1,148 @@
+<?php
+
+use \Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_rebuild().
+ */
+function staff_profile_secondary_rebuild() {
+  staff_profile_secondary_handle_feeds();
+}
+
+/**
+ * Implements hook_cron().
+ */
+function staff_profile_secondary_cron() {
+  staff_profile_secondary_handle_feeds();
+
+  /*
+    // Short-running operation example, not using a queue:
+    // Delete all expired records since the last cron run.
+    $expires = \Drupal::state()->get('mymodule.last_check', 0);
+    \Drupal::database()->delete('mymodule_table')
+      ->condition('expires', $expires, '>=')
+      ->execute();
+    \Drupal::state()->set('mymodule.last_check', REQUEST_TIME);
+
+    // Long-running operation example, leveraging a queue:
+    // Queue news feeds for updates once their refresh interval has elapsed.
+    $queue = \Drupal::queue('aggregator_feeds');
+    $ids = \Drupal::entityTypeManager()->getStorage('aggregator_feed')->getFeedIdsToRefresh();
+    foreach (Feed::loadMultiple($ids) as $feed) {
+      if ($queue->createItem($feed)) {
+        // Add timestamp to avoid queueing item more than once.
+        $feed->setQueuedTime(REQUEST_TIME);
+        $feed->save();
+      }
+    }
+    $ids = \Drupal::entityQuery('aggregator_feed')
+      ->condition('queued', REQUEST_TIME - (3600 * 6), '<')
+      ->execute();
+    if ($ids) {
+      $feeds = Feed::loadMultiple($ids);
+      foreach ($feeds as $feed) {
+        $feed->setQueuedTime(0);
+        $feed->save();
+      }
+    }
+  */
+}
+
+/**
+ * Pull in the feeds
+ */
+function staff_profile_secondary_handle_feeds() {
+  // Get all Staff Profile nodes
+  $nids = \Drupal::entityQuery('node')->condition('type', 'staff_profile')->execute();
+  $nodes =  Node::loadMultiple($nids);
+
+  $fromFeed = file_get_contents('http://local.test/staffdir/feeds/county/story');
+  $profiles = json_decode($fromFeed, TRUE);
+
+  $count = 0;
+
+  foreach ($profiles as $profile) {
+
+    // Find the node that matches the profile, if one exists
+    $mynode = '';
+    foreach ($nodes as $node) {
+      if (strtolower($node->field_email->value) == strtolower($profile['field_email'])) {
+        $mynode = $node;
+        break;
+      }
+    }
+
+    // Create node if one's not found
+    if (empty($mynode)) {
+      $mynode = Node::create(array('type' => 'staff_profile', 'title' => $profile['title']));
+    }
+
+    // Handle the title and body
+    $mynode->setTitle($profile['title']);
+    $mynode->set('body', $profile['body']);
+    $mynode->body->format = 'basic';
+
+    // Handle all the normal fields
+    $mynode->set('field_first_name', $profile['field_first_name']);
+    $mynode->set('field_last_name', $profile['field_last_name']);
+    $mynode->set('field_email', $profile['field_email']);
+    $mynode->set('field_netid', $profile['field_netid']);
+    $mynode->set('field_preferred_name', $profile['field_preferred_name']);
+    $mynode->set('field_preferred_phone', $profile['field_preferred_phone']);
+    $mynode->set('field_working_title', $profile['field_working_title']);
+    $mynode->set('field_staffid', $profile['field_staffid']);
+    $mynode->set('field_departmentid', $profile['field_departmentid']);
+    $mynode->set('field_job_title', $profile['field_job_title']);
+    $mynode->set('field_phone', $profile['field_phone']);
+    $mynode->set('field_fax', $profile['field_fax']);
+    $mynode->set('field_college', $profile['field_college']);
+    $mynode->set('field_location', $profile['field_location']);
+    $mynode->set('field_region', (!empty($profile['field_region']) && (intval($profile['field_region']) > 0)) ? $profile['field_region'] : '');
+    $mynode->set('field_county_department_name', $profile['field_county_department_name']);
+
+    // Handle the address field
+    $mynode->field_addr = array(
+      'country_code' => $profile['field_addr_country_code'],
+      'address_line1' => $profile['field_addr_address_line1'],
+      'address_line2' => $profile['field_addr_address_line2'],
+      'locality' => $profile['field_addr_locality'],
+      'administrative_area' => $profile['field_addr_administrative_area'],
+      'postal_code' => $profile['field_addr_postal_code'],
+    );
+
+
+    // Handle the base county
+    $taxonomy = taxonomy_term_load_multiple_by_name($profile['field_base_county'], 'counties_in_iowa');
+    $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
+    $mynode->field_base_county = [['target_id' => $base_county]];
+
+    // Handle the program areas field
+    $mynode->field_program_areas = [array()];
+    $temp_array = explode(', ', $profile['field_program_areas']);
+    foreach ($temp_array as $index => $temp_term) {
+      $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'program_areas');
+      if (!empty($taxon) && array_keys($taxon)[0] > 0) {
+        $mynode->field_program_areas[] = ['target_id' => array_keys($taxon)[0]];
+      }
+    }
+
+    // Handle counties served
+    $mynode->field_counties_served = [array()];
+    $temp_array = explode(', ', $profile['field_counties_served']);
+    foreach ($temp_array as $index => $temp_term) {
+      $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'counties_in_iowa');
+      if (!empty($taxon) && array_keys($taxon)[0] > 0) {
+        $mynode->field_counties_served[] = ['target_id' => array_keys($taxon)[0]];
+      }
+    }
+
+    $mynode->set('field_unpublish_on_sync', FALSE);
+    $mynode->setPublished();
+    $mynode->save();
+
+    $count++;
+  }
+
+  // Log a message to ensure it ran
+  \Drupal::logger('staff_profile_secondary')->info('Number of Staff Imported: ' . $count);
+}
