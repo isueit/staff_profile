@@ -1,0 +1,8 @@
+name: 'Staff Profile Secondary'
+type: module
+core: 8.x
+description: 'Pull profiles from Primary Staff Directory, used on County and other sites'
+version: '8.x-1.0-dev'
+package: 'ISUEO'
+dependencies:
+  - staff_profile:staff_profile
