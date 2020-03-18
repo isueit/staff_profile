@@ -28,6 +28,8 @@ dependencies:
     - node.type.staff_profile
   module:
     - address
+    - field_delimiter
+    - field_formatter_class
     - field_group
     - options
     - text
@@ -146,7 +148,11 @@ content:
     label: inline
     settings:
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      field_delimiter:
+        delimiter: ','
+      field_formatter_class:
+        class: ''
     type: entity_reference_label
     region: content
   field_region:
