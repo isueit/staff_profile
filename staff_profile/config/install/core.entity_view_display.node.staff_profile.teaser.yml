@@ -22,9 +22,9 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_pref_phone
     - field.field.node.staff_profile.field_staff_profile_pgm_areas
     - field.field.node.staff_profile.field_staff_profile_region
-    - field.field.node.staff_profile.field_sort_order
+    - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
-    - field.field.node.staff_profile.field_unpublish_on_sync
+    - field.field.node.staff_profile.field_staff_profile_stale
     - field.field.node.staff_profile.field_staff_profile_pref_title
     - node.type.staff_profile
   module:
@@ -67,7 +67,7 @@ hidden:
   field_staff_profile_pref_phone: true
   field_staff_profile_pgm_areas: true
   field_staff_profile_region: true
-  field_sort_order: true
+  field_staff_profile_sort_order: true
   field_staff_profile_staffid: true
-  field_unpublish_on_sync: true
+  field_staff_profile_stale: true
   field_staff_profile_pref_title: true

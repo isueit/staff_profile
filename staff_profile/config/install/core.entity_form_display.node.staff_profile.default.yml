@@ -21,9 +21,9 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_pref_phone
     - field.field.node.staff_profile.field_staff_profile_pgm_areas
     - field.field.node.staff_profile.field_staff_profile_region
-    - field.field.node.staff_profile.field_sort_order
+    - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
-    - field.field.node.staff_profile.field_unpublish_on_sync
+    - field.field.node.staff_profile.field_staff_profile_stale
     - field.field.node.staff_profile.field_staff_profile_pref_title
     - node.type.staff_profile
   module:
@@ -268,7 +268,7 @@ content:
     third_party_settings: {  }
     type: number
     region: content
-  field_sort_order:
+  field_staff_profile_sort_order:
     type: weight_selector
     weight: 3
     region: content
@@ -352,4 +352,4 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_unpublish_on_sync: true
+  field_staff_profile_stale: true

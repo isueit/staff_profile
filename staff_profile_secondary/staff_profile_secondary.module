@@ -136,7 +136,7 @@ function staff_profile_secondary_handle_feeds() {
       }
     }
 
-    $mynode->set('field_unpublish_on_sync', FALSE);
+    $mynode->set('field_staff_profile_stale', FALSE);
     $mynode->setPublished();
     $mynode->save();
 

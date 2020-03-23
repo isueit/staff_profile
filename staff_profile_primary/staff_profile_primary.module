@@ -70,7 +70,7 @@ function staff_profile_primary_profile_from_database () {
   // Unpublish all published nodes from the Staff Directory Database
   foreach ($nodes as $node) {
     if ($node->isPublished() && !empty($node->field_staff_profile_staffid->value)) {
-      $node->set('field_unpublish_on_sync', TRUE)->save();
+      $node->set('field_staff_profile_stale', TRUE)->save();
     }
   }
 
@@ -147,7 +147,7 @@ function staff_profile_primary_profile_from_database () {
       }
     }
 
-    $mynode->set('field_unpublish_on_sync', FALSE);
+    $mynode->set('field_staff_profile_stale', FALSE);
     $mynode->setPublished();
     $mynode->save();
 
@@ -155,8 +155,8 @@ function staff_profile_primary_profile_from_database () {
   }
 
   foreach ($nodes as $node) {
-    if ($node->get('field_unpublish_on_sync')->value) {
-      $node->set('field_unpublish_on_sync', FALSE);
+    if ($node->get('field_staff_profile_stale')->value) {
+      $node->set('field_staff_profile_stale', FALSE);
       $node->setUnpublished();
       $node->save();
     }
@@ -189,9 +189,9 @@ function staff_profile_primary_form_node_form_alter(&$form, &$form_state, $form_
       staff_profile_mark_database_fields_readonly($form);
     }
     // Disable Sort order, not needed on the primary site
-    $form['field_sort_order']['widget'][0]['value']['#access'] = FALSE;
-    $form['field_sort_order']['widget'][0]['value']['#disabled'] = TRUE;
-    $form['field_sort_order']['widget'][0]['value']['#description'] = 'Sort order isn\'t used on this site, so it\'s disabled.';
+    $form['field_staff_profile_sort_order']['widget'][0]['value']['#access'] = FALSE;
+    $form['field_staff_profile_sort_order']['widget'][0]['value']['#disabled'] = TRUE;
+    $form['field_staff_profile_sort_order']['widget'][0]['value']['#description'] = 'Sort order isn\'t used on this site, so it\'s disabled.';
 
   }
 }
