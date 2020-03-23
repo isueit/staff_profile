@@ -519,7 +519,7 @@ display:
           filters:
             field_staff_profile_first_name_value: field_staff_profile_first_name_value
             field_preferred_name_value: field_preferred_name_value
-            field_last_name_value: field_last_name_value
+            field_staff_profile_last_name_value: field_staff_profile_last_name_value
             title: title
           plugin_id: views_filters_populate
         field_base_county_target_id:
@@ -743,10 +743,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
-        field_last_name_value:
-          id: field_last_name_value
-          table: node__field_last_name
-          field: field_last_name_value
+        field_staff_profile_last_name_value:
+          id: field_staff_profile_last_name_value
+          table: node__field_staff_profile_last_name
+          field: field_staff_profile_last_name_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -755,14 +755,14 @@ display:
           group: 2
           exposed: false
           expose:
-            operator_id: field_last_name_value_op
+            operator_id: field_staff_profile_last_name_value_op
             label: 'Last Name:'
             description: ''
             use_operator: false
-            operator: field_last_name_value_op
+            operator: field_staff_profile_last_name_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_last_name_value
+            identifier: field_staff_profile_last_name_value
             required: false
             remember: false
             multiple: false
@@ -826,10 +826,10 @@ display:
           entity_field: title
           plugin_id: string
       sorts:
-        field_last_name_value:
-          id: field_last_name_value
-          table: node__field_last_name
-          field: field_last_name_value
+        field_staff_profile_last_name_value:
+          id: field_staff_profile_last_name_value
+          table: node__field_staff_profile_last_name
+          field: field_staff_profile_last_name_value
           relationship: none
           group_type: group
           admin_label: ''

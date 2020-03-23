@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_last_name
-field_name: field_last_name
+id: node.field_staff_profile_last_name
+field_name: field_staff_profile_last_name
 entity_type: node
 type: string
 settings:

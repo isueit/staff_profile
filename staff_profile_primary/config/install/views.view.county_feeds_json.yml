@@ -12,7 +12,7 @@ dependencies:
     - field.storage.node.field_fax
     - field.storage.node.field_staff_profile_first_name
     - field.storage.node.field_job_title
-    - field.storage.node.field_last_name
+    - field.storage.node.field_staff_profile_last_name
     - field.storage.node.field_location
     - field.storage.node.field_netid
     - field.storage.node.field_phone
@@ -227,10 +227,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_last_name:
-          id: field_last_name
-          table: node__field_last_name
-          field: field_last_name
+        field_staff_profile_last_name:
+          id: field_staff_profile_last_name
+          table: node__field_staff_profile_last_name
+          field: field_staff_profile_last_name
           relationship: none
           group_type: group
           admin_label: ''
@@ -1960,7 +1960,7 @@ display:
         - 'config:field.storage.node.field_fax'
         - 'config:field.storage.node.field_staff_profile_first_name'
         - 'config:field.storage.node.field_job_title'
-        - 'config:field.storage.node.field_last_name'
+        - 'config:field.storage.node.field_staff_profile_last_name'
         - 'config:field.storage.node.field_location'
         - 'config:field.storage.node.field_netid'
         - 'config:field.storage.node.field_phone'
@@ -2016,7 +2016,7 @@ display:
         - 'config:field.storage.node.field_fax'
         - 'config:field.storage.node.field_staff_profile_first_name'
         - 'config:field.storage.node.field_job_title'
-        - 'config:field.storage.node.field_last_name'
+        - 'config:field.storage.node.field_staff_profile_last_name'
         - 'config:field.storage.node.field_location'
         - 'config:field.storage.node.field_netid'
         - 'config:field.storage.node.field_phone'
