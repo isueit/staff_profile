@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.staff_profile.body
-    - field.field.node.staff_profile.field_addr
+    - field.field.node.staff_profile.field_staff_profile_addr
     - field.field.node.staff_profile.field_staff_profile_base_county
     - field.field.node.staff_profile.field_staff_profile_college
     - field.field.node.staff_profile.field_staff_profile_cty_served
@@ -80,7 +80,7 @@ third_party_settings:
       children:
         - field_staff_profile_netid
         - field_staff_profile_email
-        - field_addr
+        - field_staff_profile_addr
         - field_staff_profile_phone
         - field_staff_profile_fax
         - field_staff_profile_region
@@ -141,7 +141,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_addr:
+  field_staff_profile_addr:
     weight: 18
     settings: {  }
     third_party_settings: {  }

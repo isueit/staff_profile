@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_addr
+    - field.storage.node.field_staff_profile_addr
     - node.type.staff_profile
   module:
     - address
-id: node.staff_profile.field_addr
-field_name: field_addr
+id: node.staff_profile.field_staff_profile_addr
+field_name: field_staff_profile_addr
 entity_type: node
 bundle: staff_profile
 label: Address

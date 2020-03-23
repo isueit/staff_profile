@@ -97,6 +97,6 @@ function staff_profile_mark_database_fields_readonly(&$form) {
   $form['field_staff_profile_pgm_areas']['widget']['#disabled'] = TRUE;
   $form['field_staff_profile_cty_served']['widget']['#disabled'] = TRUE;
 
-  $form['field_addr']['widget'][0]['address']['#disabled'] = TRUE;
+  $form['field_staff_profile_addr']['widget'][0]['address']['#disabled'] = TRUE;
   $form['field_staff_profile_stale']['widget']['value']['#disabled'] = TRUE;
 }
