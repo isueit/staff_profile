@@ -129,12 +129,12 @@ function staff_profile_primary_profile_from_database () {
 
     $mynode->field_region->value = (!empty($profile->ExtensionArea) && (intval($profile->ExtensionArea) > 0)) ? $profile->ExtensionArea : '';
 
-    $mynode->field_counties_served = [array()];
+    $mynode->field_staff_profile_counties_served = [array()];
     $temp_array = explode(', ', $profile->CountiesServed);
     foreach ($temp_array as $index => $temp_term) {
       $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'counties_in_iowa');
       if (!empty($taxon) && array_keys($taxon)[0] > 0) {
-        $mynode->field_counties_served[] = ['target_id' => array_keys($taxon)[0]];
+        $mynode->field_staff_profile_counties_served[] = ['target_id' => array_keys($taxon)[0]];
       }
     }
 

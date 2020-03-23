@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.staff_profile.field_addr
     - field.field.node.staff_profile.field_base_county
     - field.field.node.staff_profile.field_college
-    - field.field.node.staff_profile.field_counties_served
+    - field.field.node.staff_profile.field_staff_profile_counties_served
     - field.field.node.staff_profile.field_county_department_name
     - field.field.node.staff_profile.field_departmentid
     - field.field.node.staff_profile.field_email
@@ -90,7 +90,7 @@ third_party_settings:
         - field_program_areas
         - field_job_title
         - field_base_county
-        - field_counties_served
+        - field_staff_profile_counties_served
         - field_staffid
       parent_name: group_main_accordion
       weight: 22
@@ -159,7 +159,7 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
-  field_counties_served:
+  field_staff_profile_counties_served:
     weight: 28
     settings: {  }
     third_party_settings: {  }
