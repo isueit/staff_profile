@@ -5,7 +5,7 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_base_county
     - field.storage.node.field_college
-    - field.storage.node.field_staff_profile_counties_served
+    - field.storage.node.field_staff_profile_cty_served
     - field.storage.node.field_county_department_name
     - field.storage.node.field_departmentid
     - field.storage.node.field_email
@@ -290,10 +290,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_staff_profile_counties_served:
-          id: field_staff_profile_counties_served
-          table: node__field_staff_profile_counties_served
-          field: field_staff_profile_counties_served
+        field_staff_profile_cty_served:
+          id: field_staff_profile_cty_served
+          table: node__field_staff_profile_cty_served
+          field: field_staff_profile_cty_served
           relationship: none
           group_type: group
           admin_label: ''
@@ -1885,13 +1885,13 @@ display:
       footer: {  }
       empty: {  }
       relationships:
-        field_staff_profile_counties_served:
-          id: field_staff_profile_counties_served
-          table: node__field_staff_profile_counties_served
-          field: field_staff_profile_counties_served
+        field_staff_profile_cty_served:
+          id: field_staff_profile_cty_served
+          table: node__field_staff_profile_cty_served
+          field: field_staff_profile_cty_served
           relationship: none
           group_type: group
-          admin_label: 'field_staff_profile_counties_served: Taxonomy term'
+          admin_label: 'field_staff_profile_cty_served: Taxonomy term'
           required: false
           plugin_id: standard
       arguments:
@@ -1899,7 +1899,7 @@ display:
           id: name
           table: taxonomy_term_field_data
           field: name
-          relationship: field_staff_profile_counties_served
+          relationship: field_staff_profile_cty_served
           group_type: group
           admin_label: ''
           default_action: empty
@@ -1953,7 +1953,7 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_base_county'
         - 'config:field.storage.node.field_college'
-        - 'config:field.storage.node.field_staff_profile_counties_served'
+        - 'config:field.storage.node.field_staff_profile_cty_served'
         - 'config:field.storage.node.field_county_department_name'
         - 'config:field.storage.node.field_departmentid'
         - 'config:field.storage.node.field_email'
@@ -2009,7 +2009,7 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_base_county'
         - 'config:field.storage.node.field_college'
-        - 'config:field.storage.node.field_staff_profile_counties_served'
+        - 'config:field.storage.node.field_staff_profile_cty_served'
         - 'config:field.storage.node.field_county_department_name'
         - 'config:field.storage.node.field_departmentid'
         - 'config:field.storage.node.field_email'

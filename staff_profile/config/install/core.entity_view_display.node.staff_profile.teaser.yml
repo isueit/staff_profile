@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.staff_profile.field_addr
     - field.field.node.staff_profile.field_base_county
     - field.field.node.staff_profile.field_college
-    - field.field.node.staff_profile.field_staff_profile_counties_served
+    - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_county_department_name
     - field.field.node.staff_profile.field_departmentid
     - field.field.node.staff_profile.field_email
@@ -52,7 +52,7 @@ hidden:
   field_addr: true
   field_base_county: true
   field_college: true
-  field_staff_profile_counties_served: true
+  field_staff_profile_cty_served: true
   field_county_department_name: true
   field_departmentid: true
   field_email: true

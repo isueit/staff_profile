@@ -569,10 +569,10 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_staff_profile_counties_served_target_id:
-          id: field_staff_profile_counties_served_target_id
-          table: node__field_staff_profile_counties_served
-          field: field_staff_profile_counties_served_target_id
+        field_staff_profile_cty_served_target_id:
+          id: field_staff_profile_cty_served_target_id
+          table: node__field_staff_profile_cty_served
+          field: field_staff_profile_cty_served_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -581,14 +581,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_staff_profile_counties_served_target_id_op
+            operator_id: field_staff_profile_cty_served_target_id_op
             label: 'Counties Served:'
             description: ''
             use_operator: false
-            operator: field_staff_profile_counties_served_target_id_op
+            operator: field_staff_profile_cty_served_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_staff_profile_counties_served_target_id
+            identifier: field_staff_profile_cty_served_target_id
             required: false
             remember: false
             multiple: false
