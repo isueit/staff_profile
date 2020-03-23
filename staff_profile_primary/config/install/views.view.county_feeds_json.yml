@@ -10,7 +10,7 @@ dependencies:
     - field.storage.node.field_departmentid
     - field.storage.node.field_email
     - field.storage.node.field_fax
-    - field.storage.node.field_first_name
+    - field.storage.node.field_staff_profile_first_name
     - field.storage.node.field_job_title
     - field.storage.node.field_last_name
     - field.storage.node.field_location
@@ -164,10 +164,10 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-        field_first_name:
-          id: field_first_name
-          table: node__field_first_name
-          field: field_first_name
+        field_staff_profile_first_name:
+          id: field_staff_profile_first_name
+          table: node__field_staff_profile_first_name
+          field: field_staff_profile_first_name
           relationship: none
           group_type: group
           admin_label: ''
@@ -1958,7 +1958,7 @@ display:
         - 'config:field.storage.node.field_departmentid'
         - 'config:field.storage.node.field_email'
         - 'config:field.storage.node.field_fax'
-        - 'config:field.storage.node.field_first_name'
+        - 'config:field.storage.node.field_staff_profile_first_name'
         - 'config:field.storage.node.field_job_title'
         - 'config:field.storage.node.field_last_name'
         - 'config:field.storage.node.field_location'
@@ -2014,7 +2014,7 @@ display:
         - 'config:field.storage.node.field_departmentid'
         - 'config:field.storage.node.field_email'
         - 'config:field.storage.node.field_fax'
-        - 'config:field.storage.node.field_first_name'
+        - 'config:field.storage.node.field_staff_profile_first_name'
         - 'config:field.storage.node.field_job_title'
         - 'config:field.storage.node.field_last_name'
         - 'config:field.storage.node.field_location'

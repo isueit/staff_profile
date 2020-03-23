@@ -11,7 +11,7 @@ dependencies:
     - field.field.node.staff_profile.field_departmentid
     - field.field.node.staff_profile.field_email
     - field.field.node.staff_profile.field_fax
-    - field.field.node.staff_profile.field_first_name
+    - field.field.node.staff_profile.field_staff_profile_first_name
     - field.field.node.staff_profile.field_job_title
     - field.field.node.staff_profile.field_last_name
     - field.field.node.staff_profile.field_location
@@ -51,7 +51,7 @@ third_party_settings:
       region: content
     group_name:
       children:
-        - field_first_name
+        - field_staff_profile_first_name
         - field_last_name
       parent_name: group_main_accordion
       weight: 21
@@ -195,7 +195,7 @@ content:
     third_party_settings: {  }
     type: telephone_default
     region: content
-  field_first_name:
+  field_staff_profile_first_name:
     weight: 122
     settings:
       size: 60

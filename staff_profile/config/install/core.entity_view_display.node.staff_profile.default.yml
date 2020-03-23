@@ -11,7 +11,7 @@ dependencies:
     - field.field.node.staff_profile.field_departmentid
     - field.field.node.staff_profile.field_email
     - field.field.node.staff_profile.field_fax
-    - field.field.node.staff_profile.field_first_name
+    - field.field.node.staff_profile.field_staff_profile_first_name
     - field.field.node.staff_profile.field_job_title
     - field.field.node.staff_profile.field_last_name
     - field.field.node.staff_profile.field_location
@@ -169,7 +169,7 @@ content:
 hidden:
   field_departmentid: true
   field_fax: true
-  field_first_name: true
+  field_staff_profile_first_name: true
   field_job_title: true
   field_last_name: true
   field_netid: true

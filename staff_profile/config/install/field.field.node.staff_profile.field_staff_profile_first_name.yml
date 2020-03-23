@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_first_name
+    - field.storage.node.field_staff_profile_first_name
     - node.type.staff_profile
-id: node.staff_profile.field_first_name
-field_name: field_first_name
+id: node.staff_profile.field_staff_profile_first_name
+field_name: field_staff_profile_first_name
 entity_type: node
 bundle: staff_profile
 label: 'First Name'

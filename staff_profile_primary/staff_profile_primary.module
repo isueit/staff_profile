@@ -105,7 +105,7 @@ function staff_profile_primary_profile_from_database () {
     }
 
     $mynode->field_staffid->value = $profile->StaffID;
-    $mynode->field_first_name->value = $profile->FirstName;
+    $mynode->field_staff_profile_first_name->value = $profile->FirstName;
     $mynode->field_last_name->value = $profile->LastName;
     $mynode->field_addr = array(
       'country_code' => 'US',

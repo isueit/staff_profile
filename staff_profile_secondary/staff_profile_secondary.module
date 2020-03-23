@@ -83,7 +83,7 @@ function staff_profile_secondary_handle_feeds() {
     $mynode->body->format = 'basic';
 
     // Handle all the normal fields
-    $mynode->set('field_first_name', $profile['field_first_name']);
+    $mynode->set('field_staff_profile_first_name', $profile['field_first_name']);
     $mynode->set('field_last_name', $profile['field_last_name']);
     $mynode->set('field_email', $profile['field_email']);
     $mynode->set('field_netid', $profile['field_netid']);

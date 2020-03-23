@@ -517,7 +517,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           filters:
-            field_first_name_value: field_first_name_value
+            field_staff_profile_first_name_value: field_staff_profile_first_name_value
             field_preferred_name_value: field_preferred_name_value
             field_last_name_value: field_last_name_value
             title: title
@@ -663,10 +663,10 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_first_name_value:
-          id: field_first_name_value
-          table: node__field_first_name
-          field: field_first_name_value
+        field_staff_profile_first_name_value:
+          id: field_staff_profile_first_name_value
+          table: node__field_staff_profile_first_name
+          field: field_staff_profile_first_name_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -675,14 +675,14 @@ display:
           group: 2
           exposed: false
           expose:
-            operator_id: field_first_name_value_op
+            operator_id: field_staff_profile_first_name_value_op
             label: 'First Name:'
             description: ''
             use_operator: false
-            operator: field_first_name_value_op
+            operator: field_staff_profile_first_name_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_first_name_value
+            identifier: field_staff_profile_first_name_value
             required: false
             remember: false
             multiple: false
@@ -838,10 +838,10 @@ display:
           expose:
             label: ''
           plugin_id: standard
-        field_first_name_value:
-          id: field_first_name_value
-          table: node__field_first_name
-          field: field_first_name_value
+        field_staff_profile_first_name_value:
+          id: field_staff_profile_first_name_value
+          table: node__field_staff_profile_first_name
+          field: field_staff_profile_first_name_value
           relationship: none
           group_type: group
           admin_label: ''
