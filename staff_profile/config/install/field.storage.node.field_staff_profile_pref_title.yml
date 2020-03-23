@@ -3,11 +3,14 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_email
-field_name: field_email
+id: node.field_staff_profile_pref_title
+field_name: field_staff_profile_pref_title
 entity_type: node
-type: email
-settings: {  }
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
 module: core
 locked: false
 cardinality: 1

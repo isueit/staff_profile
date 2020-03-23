@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - telephone
-id: node.field_phone
-field_name: field_phone
+id: node.field_staff_profile_fax
+field_name: field_staff_profile_fax
 entity_type: node
 type: telephone
 settings: {  }

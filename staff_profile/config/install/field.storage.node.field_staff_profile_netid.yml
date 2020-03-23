@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_preferred_name
-field_name: field_preferred_name
+id: node.field_staff_profile_netid
+field_name: field_staff_profile_netid
 entity_type: node
 type: string
 settings:

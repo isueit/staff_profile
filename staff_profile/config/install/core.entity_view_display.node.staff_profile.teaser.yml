@@ -5,27 +5,27 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.staff_profile.body
     - field.field.node.staff_profile.field_addr
-    - field.field.node.staff_profile.field_base_county
-    - field.field.node.staff_profile.field_college
+    - field.field.node.staff_profile.field_staff_profile_base_county
+    - field.field.node.staff_profile.field_staff_profile_college
     - field.field.node.staff_profile.field_staff_profile_cty_served
-    - field.field.node.staff_profile.field_county_department_name
-    - field.field.node.staff_profile.field_departmentid
-    - field.field.node.staff_profile.field_email
-    - field.field.node.staff_profile.field_fax
+    - field.field.node.staff_profile.field_staff_profile_cty_dept
+    - field.field.node.staff_profile.field_staff_profile_departmentid
+    - field.field.node.staff_profile.field_staff_profile_email
+    - field.field.node.staff_profile.field_staff_profile_fax
     - field.field.node.staff_profile.field_staff_profile_first_name
-    - field.field.node.staff_profile.field_job_title
+    - field.field.node.staff_profile.field_staff_profile_job_title
     - field.field.node.staff_profile.field_staff_profile_last_name
-    - field.field.node.staff_profile.field_location
-    - field.field.node.staff_profile.field_netid
-    - field.field.node.staff_profile.field_phone
-    - field.field.node.staff_profile.field_preferred_name
-    - field.field.node.staff_profile.field_preferred_phone
-    - field.field.node.staff_profile.field_program_areas
-    - field.field.node.staff_profile.field_region
+    - field.field.node.staff_profile.field_staff_profile_location
+    - field.field.node.staff_profile.field_staff_profile_netid
+    - field.field.node.staff_profile.field_staff_profile_phone
+    - field.field.node.staff_profile.field_staff_profile_pref_name
+    - field.field.node.staff_profile.field_staff_profile_pref_phone
+    - field.field.node.staff_profile.field_staff_profile_pgm_areas
+    - field.field.node.staff_profile.field_staff_profile_region
     - field.field.node.staff_profile.field_sort_order
-    - field.field.node.staff_profile.field_staffid
+    - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_unpublish_on_sync
-    - field.field.node.staff_profile.field_working_title
+    - field.field.node.staff_profile.field_staff_profile_pref_title
     - node.type.staff_profile
   module:
     - text
@@ -50,24 +50,24 @@ content:
     region: content
 hidden:
   field_addr: true
-  field_base_county: true
-  field_college: true
+  field_staff_profile_base_county: true
+  field_staff_profile_college: true
   field_staff_profile_cty_served: true
-  field_county_department_name: true
-  field_departmentid: true
-  field_email: true
-  field_fax: true
+  field_staff_profile_cty_dept: true
+  field_staff_profile_departmentid: true
+  field_staff_profile_email: true
+  field_staff_profile_fax: true
   field_staff_profile_first_name: true
-  field_job_title: true
+  field_staff_profile_job_title: true
   field_staff_profile_last_name: true
-  field_location: true
-  field_netid: true
-  field_phone: true
-  field_preferred_name: true
-  field_preferred_phone: true
-  field_program_areas: true
-  field_region: true
+  field_staff_profile_location: true
+  field_staff_profile_netid: true
+  field_staff_profile_phone: true
+  field_staff_profile_pref_name: true
+  field_staff_profile_pref_phone: true
+  field_staff_profile_pgm_areas: true
+  field_staff_profile_region: true
   field_sort_order: true
-  field_staffid: true
+  field_staff_profile_staffid: true
   field_unpublish_on_sync: true
-  field_working_title: true
+  field_staff_profile_pref_title: true

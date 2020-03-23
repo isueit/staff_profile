@@ -3,13 +3,15 @@ status: true
 dependencies:
   module:
     - node
-    - telephone
-id: node.field_fax
-field_name: field_fax
+id: node.field_staff_profile_job_title
+field_name: field_staff_profile_job_title
 entity_type: node
-type: telephone
-settings: {  }
-module: telephone
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

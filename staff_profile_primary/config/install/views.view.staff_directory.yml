@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_county_department_name
-    - field.storage.node.field_email
-    - field.storage.node.field_preferred_phone
-    - field.storage.node.field_working_title
+    - field.storage.node.field_staff_profile_cty_dept
+    - field.storage.node.field_staff_profile_email
+    - field.storage.node.field_staff_profile_pref_phone
+    - field.storage.node.field_staff_profile_pref_title
     - node.type.staff_profile
     - taxonomy.vocabulary.counties_in_iowa
     - taxonomy.vocabulary.program_areas
@@ -89,10 +89,10 @@ display:
           description: ''
           columns:
             title: title
-            field_county_department_name: field_working_title
-            field_working_title: field_working_title
-            field_email: field_working_title
-            field_preferred_phone: field_working_title
+            field_staff_profile_cty_dept: field_staff_profile_pref_title
+            field_staff_profile_pref_title: field_staff_profile_pref_title
+            field_staff_profile_email: field_staff_profile_pref_title
+            field_staff_profile_pref_phone: field_staff_profile_pref_title
           info:
             title:
               sortable: false
@@ -101,28 +101,28 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_county_department_name:
+            field_staff_profile_cty_dept:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_working_title:
+            field_staff_profile_pref_title:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: '<br>'
               empty_column: false
               responsive: ''
-            field_email:
+            field_staff_profile_email:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_preferred_phone:
+            field_staff_profile_pref_phone:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -199,10 +199,10 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-        field_county_department_name:
-          id: field_county_department_name
-          table: node__field_county_department_name
-          field: field_county_department_name
+        field_staff_profile_cty_dept:
+          id: field_staff_profile_cty_dept
+          table: node__field_staff_profile_cty_dept
+          field: field_staff_profile_cty_dept
           relationship: none
           group_type: group
           admin_label: ''
@@ -262,10 +262,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_working_title:
-          id: field_working_title
-          table: node__field_working_title
-          field: field_working_title
+        field_staff_profile_pref_title:
+          id: field_staff_profile_pref_title
+          table: node__field_staff_profile_pref_title
+          field: field_staff_profile_pref_title
           relationship: none
           group_type: group
           admin_label: ''
@@ -325,10 +325,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_email:
-          id: field_email
-          table: node__field_email
-          field: field_email
+        field_staff_profile_email:
+          id: field_staff_profile_email
+          table: node__field_staff_profile_email
+          field: field_staff_profile_email
           relationship: none
           group_type: group
           admin_label: ''
@@ -387,10 +387,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_preferred_phone:
-          id: field_preferred_phone
-          table: node__field_preferred_phone
-          field: field_preferred_phone
+        field_staff_profile_pref_phone:
+          id: field_staff_profile_pref_phone
+          table: node__field_staff_profile_pref_phone
+          field: field_staff_profile_pref_phone
           relationship: none
           group_type: group
           admin_label: ''
@@ -518,14 +518,14 @@ display:
             group_items: {  }
           filters:
             field_staff_profile_first_name_value: field_staff_profile_first_name_value
-            field_preferred_name_value: field_preferred_name_value
+            field_staff_profile_pref_name_value: field_staff_profile_pref_name_value
             field_staff_profile_last_name_value: field_staff_profile_last_name_value
             title: title
           plugin_id: views_filters_populate
-        field_base_county_target_id:
-          id: field_base_county_target_id
-          table: node__field_base_county
-          field: field_base_county_target_id
+        field_staff_profile_base_county_target_id:
+          id: field_staff_profile_base_county_target_id
+          table: node__field_staff_profile_base_county
+          field: field_staff_profile_base_county_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -534,14 +534,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_base_county_target_id_op
+            operator_id: field_staff_profile_base_county_target_id_op
             label: 'Base County:'
             description: ''
             use_operator: false
-            operator: field_base_county_target_id_op
+            operator: field_staff_profile_base_county_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_base_county_target_id
+            identifier: field_staff_profile_base_county_target_id
             required: false
             remember: false
             multiple: false
@@ -616,10 +616,10 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_program_areas_target_id:
-          id: field_program_areas_target_id
-          table: node__field_program_areas
-          field: field_program_areas_target_id
+        field_staff_profile_pgm_areas_target_id:
+          id: field_staff_profile_pgm_areas_target_id
+          table: node__field_staff_profile_pgm_areas
+          field: field_staff_profile_pgm_areas_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -628,14 +628,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_program_areas_target_id_op
+            operator_id: field_staff_profile_pgm_areas_target_id_op
             label: 'Program Areas:'
             description: ''
             use_operator: false
-            operator: field_program_areas_target_id_op
+            operator: field_staff_profile_pgm_areas_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_program_areas_target_id
+            identifier: field_staff_profile_pgm_areas_target_id
             required: false
             remember: false
             multiple: false
@@ -704,10 +704,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
-        field_preferred_name_value:
-          id: field_preferred_name_value
-          table: node__field_preferred_name
-          field: field_preferred_name_value
+        field_staff_profile_pref_name_value:
+          id: field_staff_profile_pref_name_value
+          table: node__field_staff_profile_pref_name
+          field: field_staff_profile_pref_name_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -886,10 +886,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_county_department_name'
-        - 'config:field.storage.node.field_email'
-        - 'config:field.storage.node.field_preferred_phone'
-        - 'config:field.storage.node.field_working_title'
+        - 'config:field.storage.node.field_staff_profile_cty_dept'
+        - 'config:field.storage.node.field_staff_profile_email'
+        - 'config:field.storage.node.field_staff_profile_pref_phone'
+        - 'config:field.storage.node.field_staff_profile_pref_title'
   page_1:
     display_plugin: page
     id: page_1
@@ -909,7 +909,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_county_department_name'
-        - 'config:field.storage.node.field_email'
-        - 'config:field.storage.node.field_preferred_phone'
-        - 'config:field.storage.node.field_working_title'
+        - 'config:field.storage.node.field_staff_profile_cty_dept'
+        - 'config:field.storage.node.field_staff_profile_email'
+        - 'config:field.storage.node.field_staff_profile_pref_phone'
+        - 'config:field.storage.node.field_staff_profile_pref_title'

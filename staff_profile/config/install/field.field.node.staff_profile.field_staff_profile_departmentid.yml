@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_departmentid
+    - field.storage.node.field_staff_profile_departmentid
     - node.type.staff_profile
-id: node.staff_profile.field_departmentid
-field_name: field_departmentid
+id: node.staff_profile.field_staff_profile_departmentid
+field_name: field_staff_profile_departmentid
 entity_type: node
 bundle: staff_profile
 label: DepartmentID

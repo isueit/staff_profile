@@ -3,14 +3,13 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_job_title
-field_name: field_job_title
+id: node.field_staff_profile_staffid
+field_name: field_staff_profile_staffid
 entity_type: node
-type: string
+type: integer
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1

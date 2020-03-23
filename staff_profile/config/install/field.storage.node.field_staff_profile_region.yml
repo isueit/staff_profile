@@ -3,13 +3,13 @@ status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_base_county
-field_name: field_base_county
+id: node.field_staff_profile_region
+field_name: field_staff_profile_region
 entity_type: node
-type: entity_reference
+type: integer
 settings:
-  target_type: taxonomy_term
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1

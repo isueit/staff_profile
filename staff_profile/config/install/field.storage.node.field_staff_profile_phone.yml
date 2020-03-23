@@ -3,14 +3,13 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_region
-field_name: field_region
+    - telephone
+id: node.field_staff_profile_phone
+field_name: field_staff_profile_phone
 entity_type: node
-type: integer
-settings:
-  unsigned: false
-  size: normal
-module: core
+type: telephone
+settings: {  }
+module: telephone
 locked: false
 cardinality: 1
 translatable: true

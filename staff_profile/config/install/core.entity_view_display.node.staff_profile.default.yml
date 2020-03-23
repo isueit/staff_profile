@@ -4,27 +4,27 @@ dependencies:
   config:
     - field.field.node.staff_profile.body
     - field.field.node.staff_profile.field_addr
-    - field.field.node.staff_profile.field_base_county
-    - field.field.node.staff_profile.field_college
+    - field.field.node.staff_profile.field_staff_profile_base_county
+    - field.field.node.staff_profile.field_staff_profile_college
     - field.field.node.staff_profile.field_staff_profile_cty_served
-    - field.field.node.staff_profile.field_county_department_name
-    - field.field.node.staff_profile.field_departmentid
-    - field.field.node.staff_profile.field_email
-    - field.field.node.staff_profile.field_fax
+    - field.field.node.staff_profile.field_staff_profile_cty_dept
+    - field.field.node.staff_profile.field_staff_profile_departmentid
+    - field.field.node.staff_profile.field_staff_profile_email
+    - field.field.node.staff_profile.field_staff_profile_fax
     - field.field.node.staff_profile.field_staff_profile_first_name
-    - field.field.node.staff_profile.field_job_title
+    - field.field.node.staff_profile.field_staff_profile_job_title
     - field.field.node.staff_profile.field_staff_profile_last_name
-    - field.field.node.staff_profile.field_location
-    - field.field.node.staff_profile.field_netid
-    - field.field.node.staff_profile.field_phone
-    - field.field.node.staff_profile.field_preferred_name
-    - field.field.node.staff_profile.field_preferred_phone
-    - field.field.node.staff_profile.field_program_areas
-    - field.field.node.staff_profile.field_region
+    - field.field.node.staff_profile.field_staff_profile_location
+    - field.field.node.staff_profile.field_staff_profile_netid
+    - field.field.node.staff_profile.field_staff_profile_phone
+    - field.field.node.staff_profile.field_staff_profile_pref_name
+    - field.field.node.staff_profile.field_staff_profile_pref_phone
+    - field.field.node.staff_profile.field_staff_profile_pgm_areas
+    - field.field.node.staff_profile.field_staff_profile_region
     - field.field.node.staff_profile.field_sort_order
-    - field.field.node.staff_profile.field_staffid
+    - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_unpublish_on_sync
-    - field.field.node.staff_profile.field_working_title
+    - field.field.node.staff_profile.field_staff_profile_pref_title
     - node.type.staff_profile
   module:
     - address
@@ -37,8 +37,8 @@ third_party_settings:
     group_contact_:
       children:
         - field_addr
-        - field_email
-        - field_preferred_phone
+        - field_staff_profile_email
+        - field_staff_profile_pref_phone
       parent_name: ''
       weight: 2
       format_type: fieldset
@@ -50,11 +50,11 @@ third_party_settings:
       label: 'Contact Information'
     group_location_information:
       children:
-        - field_region
-        - field_college
-        - field_program_areas
-        - field_location
-        - field_base_county
+        - field_staff_profile_region
+        - field_staff_profile_college
+        - field_staff_profile_pgm_areas
+        - field_staff_profile_location
+        - field_staff_profile_base_county
         - field_staff_profile_cty_served
       parent_name: ''
       weight: 3
@@ -84,7 +84,7 @@ content:
     third_party_settings: {  }
     type: address_default
     region: content
-  field_base_county:
+  field_staff_profile_base_county:
     weight: 7
     label: inline
     settings:
@@ -92,7 +92,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_college:
+  field_staff_profile_college:
     weight: 4
     label: inline
     settings: {  }
@@ -111,7 +111,7 @@ content:
         class: staff_profile_counties_served
     type: entity_reference_label
     region: content
-  field_county_department_name:
+  field_staff_profile_cty_dept:
     weight: 0
     label: hidden
     settings:
@@ -119,21 +119,21 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_email:
+  field_staff_profile_email:
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: email_mailto
     region: content
-  field_location:
+  field_staff_profile_location:
     weight: 6
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_preferred_phone:
+  field_staff_profile_pref_phone:
     weight: 4
     label: hidden
     settings:
@@ -141,7 +141,7 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_program_areas:
+  field_staff_profile_pgm_areas:
     weight: 5
     label: inline
     settings:
@@ -149,7 +149,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_region:
+  field_staff_profile_region:
     weight: 3
     label: inline
     settings:
@@ -158,7 +158,7 @@ content:
     third_party_settings: {  }
     type: number_integer
     region: content
-  field_working_title:
+  field_staff_profile_pref_title:
     weight: 1
     label: hidden
     settings:
@@ -167,15 +167,15 @@ content:
     type: string
     region: content
 hidden:
-  field_departmentid: true
-  field_fax: true
+  field_staff_profile_departmentid: true
+  field_staff_profile_fax: true
   field_staff_profile_first_name: true
-  field_job_title: true
+  field_staff_profile_job_title: true
   field_staff_profile_last_name: true
-  field_netid: true
-  field_phone: true
-  field_preferred_name: true
+  field_staff_profile_netid: true
+  field_staff_profile_phone: true
+  field_staff_profile_pref_name: true
   field_sort_order: true
-  field_staffid: true
+  field_staff_profile_staffid: true
   field_unpublish_on_sync: true
   links: true

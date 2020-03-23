@@ -3,17 +3,16 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_county_department_name
-field_name: field_county_department_name
+    - taxonomy
+id: node.field_staff_profile_pgm_areas
+field_name: field_staff_profile_pgm_areas
 entity_type: node
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  target_type: taxonomy_term
 module: core
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

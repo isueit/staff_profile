@@ -69,7 +69,7 @@ function staff_profile_primary_profile_from_database () {
 
   // Unpublish all published nodes from the Staff Directory Database
   foreach ($nodes as $node) {
-    if ($node->isPublished() && !empty($node->field_staffid->value)) {
+    if ($node->isPublished() && !empty($node->field_staff_profile_staffid->value)) {
       $node->set('field_unpublish_on_sync', TRUE)->save();
     }
   }
@@ -80,7 +80,7 @@ function staff_profile_primary_profile_from_database () {
     // Find the node that matches the profile, if one exists
     $mynode = '';
     foreach ($nodes as $node) {
-      if (strtolower($node->field_email->value) == strtolower($profile->email)) {
+      if (strtolower($node->field_staff_profile_email->value) == strtolower($profile->email)) {
         $mynode = $node;
         break;
       }
@@ -97,14 +97,14 @@ function staff_profile_primary_profile_from_database () {
     // Need to create a node
     if (empty($mynode)) {
       $mynode = Node::create(array('type' => 'staff_profile', 'title' => $profile->LastName . ', ' . $profile->FirstName));
-      $mynode->field_email->value = $profile->email;
-      $mynode->field_netid->value = str_replace('@iastate.edu', '', strtolower($profile->email));
-      $mynode->field_preferred_name->value = $profile->FirstName;
-      $mynode->field_preferred_phone->value = $profile->Phone;
-      $mynode->field_working_title = $jobtitle;
+      $mynode->field_staff_profile_email->value = $profile->email;
+      $mynode->field_staff_profile_netid->value = str_replace('@iastate.edu', '', strtolower($profile->email));
+      $mynode->field_staff_profile_pref_name->value = $profile->FirstName;
+      $mynode->field_staff_profile_pref_phone->value = $profile->Phone;
+      $mynode->field_staff_profile_pref_title = $jobtitle;
     }
 
-    $mynode->field_staffid->value = $profile->StaffID;
+    $mynode->field_staff_profile_staffid->value = $profile->StaffID;
     $mynode->field_staff_profile_first_name->value = $profile->FirstName;
     $mynode->field_staff_profile_last_name->value = $profile->LastName;
     $mynode->field_addr = array(
@@ -115,19 +115,19 @@ function staff_profile_primary_profile_from_database () {
       'administrative_area' => $profile->State,
       'postal_code' => $profile->Zip,
     );
-    $mynode->field_departmentid->value = $profile->DepartmentID;
-    $mynode->field_job_title->value = $jobtitle;
-    $mynode->field_phone->value = $profile->Phone;
-    $mynode->field_fax->value = $profile->Fax;
+    $mynode->field_staff_profile_departmentid->value = $profile->DepartmentID;
+    $mynode->field_staff_profile_job_title->value = $jobtitle;
+    $mynode->field_staff_profile_phone->value = $profile->Phone;
+    $mynode->field_staff_profile_fax->value = $profile->Fax;
 
     $taxonomy = taxonomy_term_load_multiple_by_name($profile->CountyName, 'counties_in_iowa');
     $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
-    $mynode->field_base_county = [['target_id' => $base_county]];
+    $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 
-    $mynode->field_college = [['value' => $profile->CollegeName]];
-    $mynode->field_location = [['value' => $profile->Location]];
+    $mynode->field_staff_profile_college = [['value' => $profile->CollegeName]];
+    $mynode->field_staff_profile_location = [['value' => $profile->Location]];
 
-    $mynode->field_region->value = (!empty($profile->ExtensionArea) && (intval($profile->ExtensionArea) > 0)) ? $profile->ExtensionArea : '';
+    $mynode->field_staff_profile_region->value = (!empty($profile->ExtensionArea) && (intval($profile->ExtensionArea) > 0)) ? $profile->ExtensionArea : '';
 
     $mynode->field_staff_profile_cty_served = [array()];
     $temp_array = explode(', ', $profile->CountiesServed);
@@ -138,12 +138,12 @@ function staff_profile_primary_profile_from_database () {
       }
     }
 
-    $mynode->field_program_areas = [array()];
+    $mynode->field_staff_profile_pgm_areas = [array()];
     $temp_array = explode(', ', $profile->ProgramAreas);
     foreach ($temp_array as $index => $temp_term) {
       $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'program_areas');
       if (!empty($taxon) && array_keys($taxon)[0] > 0) {
-        $mynode->field_program_areas[] = ['target_id' => array_keys($taxon)[0]];
+        $mynode->field_staff_profile_pgm_areas[] = ['target_id' => array_keys($taxon)[0]];
       }
     }
 
@@ -185,7 +185,7 @@ function staff_profile_primary_form_node_form_alter(&$form, &$form_state, $form_
 
     // Set Many fields to readonly when user does't have "edit any staff_profile content" permission
     $user = \Drupal::currentUser();
-    if (!$user->hasPermission('edit any staff_profile content') && !empty($node->field_staffid->value)) {
+    if (!$user->hasPermission('edit any staff_profile content') && !empty($node->field_staff_profile_staffid->value)) {
       staff_profile_mark_database_fields_readonly($form);
     }
     // Disable Sort order, not needed on the primary site
@@ -202,13 +202,13 @@ function staff_profile_primary_form_node_form_alter(&$form, &$form_state, $form_
 function staff_profile_primary_node_presave($entity) {
   if ($entity->getType() == 'staff_profile') {
     // Set the owner of the new node, will probably need to create the user
-    $users =\Drupal::entityTypeManager()->getStorage('user')->loadByProperties(array('name' => $entity->field_netid->value));
+    $users =\Drupal::entityTypeManager()->getStorage('user')->loadByProperties(array('name' => $entity->field_staff_profile_netid->value));
     $owner = reset($users);
     if (!$owner) {
-      $owner = User::create(array('name' => $entity->field_netid, 'mail' => $entity->field_email, 'pass' => Random::string(40)));
+      $owner = User::create(array('name' => $entity->field_staff_profile_netid, 'mail' => $entity->field_staff_profile_email, 'pass' => Random::string(40)));
       $owner->activate()->save();
     }
     $entity->setOwner($owner);
-    $entity->setTitle($entity->field_preferred_name->value . ' ' . $entity->field_staff_profile_last_name->value);
+    $entity->setTitle($entity->field_staff_profile_pref_name->value . ' ' . $entity->field_staff_profile_last_name->value);
   }
 }

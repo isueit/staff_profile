@@ -2,19 +2,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_phone
+    - field.storage.node.field_staff_profile_location
     - node.type.staff_profile
   module:
-    - telephone
-id: node.staff_profile.field_phone
-field_name: field_phone
+    - options
+id: node.staff_profile.field_staff_profile_location
+field_name: field_staff_profile_location
 entity_type: node
 bundle: staff_profile
-label: Phone
+label: 'Location:'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: telephone
+field_type: list_string

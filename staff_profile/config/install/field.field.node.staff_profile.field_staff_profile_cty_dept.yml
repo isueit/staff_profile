@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_county_department_name
+    - field.storage.node.field_staff_profile_cty_dept
     - node.type.staff_profile
-id: node.staff_profile.field_county_department_name
-field_name: field_county_department_name
+id: node.staff_profile.field_staff_profile_cty_dept
+field_name: field_staff_profile_cty_dept
 entity_type: node
 bundle: staff_profile
 label: 'County/Department Name'

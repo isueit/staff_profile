@@ -66,7 +66,7 @@ function staff_profile_secondary_handle_feeds() {
     // Find the node that matches the profile, if one exists
     $mynode = '';
     foreach ($nodes as $node) {
-      if (strtolower($node->field_email->value) == strtolower($profile['field_email'])) {
+      if (strtolower($node->field_staff_profile_email->value) == strtolower($profile['field_staff_profile_email'])) {
         $mynode = $node;
         break;
       }
@@ -85,20 +85,20 @@ function staff_profile_secondary_handle_feeds() {
     // Handle all the normal fields
     $mynode->set('field_staff_profile_first_name', $profile['field_first_name']);
     $mynode->set('field_staff_profile_last_name', $profile['field_last_name']);
-    $mynode->set('field_email', $profile['field_email']);
-    $mynode->set('field_netid', $profile['field_netid']);
-    $mynode->set('field_preferred_name', $profile['field_preferred_name']);
-    $mynode->set('field_preferred_phone', $profile['field_preferred_phone']);
-    $mynode->set('field_working_title', $profile['field_working_title']);
-    $mynode->set('field_staffid', $profile['field_staffid']);
-    $mynode->set('field_departmentid', $profile['field_departmentid']);
-    $mynode->set('field_job_title', $profile['field_job_title']);
-    $mynode->set('field_phone', $profile['field_phone']);
-    $mynode->set('field_fax', $profile['field_fax']);
-    $mynode->set('field_college', $profile['field_college']);
-    $mynode->set('field_location', $profile['field_location']);
-    $mynode->set('field_region', (!empty($profile['field_region']) && (intval($profile['field_region']) > 0)) ? $profile['field_region'] : '');
-    $mynode->set('field_county_department_name', $profile['field_county_department_name']);
+    $mynode->set('field_staff_profile_email', $profile['field_staff_profile_email']);
+    $mynode->set('field_staff_profile_netid', $profile['field_staff_profile_netid']);
+    $mynode->set('field_staff_profile_pref_name', $profile['field_staff_profile_pref_name']);
+    $mynode->set('field_staff_profile_pref_phone', $profile['field_staff_profile_pref_phone']);
+    $mynode->set('field_staff_profile_pref_title', $profile['field_staff_profile_pref_title']);
+    $mynode->set('field_staff_profile_staffid', $profile['field_staff_profile_staffid']);
+    $mynode->set('field_staff_profile_departmentid', $profile['field_staff_profile_departmentid']);
+    $mynode->set('field_staff_profile_job_title', $profile['field_staff_profile_job_title']);
+    $mynode->set('field_staff_profile_phone', $profile['field_staff_profile_phone']);
+    $mynode->set('field_staff_profile_fax', $profile['field_staff_profile_fax']);
+    $mynode->set('field_staff_profile_college', $profile['field_colle']);
+    $mynode->set('field_staff_profile_location', $profile['field_staff_profile_location']);
+    $mynode->set('field_staff_profile_region', (!empty($profile['field_staff_profile_region']) && (intval($profile['field_staff_profile_region']) > 0)) ? $profile['field_staff_profile_region'] : '');
+    $mynode->set('field_staff_profile_cty_dept', $profile['field_staff_profile_cty_dept']);
 
     // Handle the address field
     $mynode->field_addr = array(
@@ -114,15 +114,15 @@ function staff_profile_secondary_handle_feeds() {
     // Handle the base county
     $taxonomy = taxonomy_term_load_multiple_by_name($profile['field_base_county'], 'counties_in_iowa');
     $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
-    $mynode->field_base_county = [['target_id' => $base_county]];
+    $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 
     // Handle the program areas field
-    $mynode->field_program_areas = [array()];
-    $temp_array = explode(', ', $profile['field_program_areas']);
+    $mynode->field_staff_profile_pgm_areas = [array()];
+    $temp_array = explode(', ', $profile['field_staff_profile_pgm_areas']);
     foreach ($temp_array as $index => $temp_term) {
       $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'program_areas');
       if (!empty($taxon) && array_keys($taxon)[0] > 0) {
-        $mynode->field_program_areas[] = ['target_id' => array_keys($taxon)[0]];
+        $mynode->field_staff_profile_pgm_areas[] = ['target_id' => array_keys($taxon)[0]];
       }
     }
 

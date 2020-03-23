@@ -2,19 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_fax
+    - field.storage.node.field_staff_profile_netid
     - node.type.staff_profile
-  module:
-    - telephone
-id: node.staff_profile.field_fax
-field_name: field_fax
+id: node.staff_profile.field_staff_profile_netid
+field_name: field_staff_profile_netid
 entity_type: node
 bundle: staff_profile
-label: Fax
+label: NetID
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: telephone
+field_type: string

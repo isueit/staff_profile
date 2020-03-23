@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - options
-id: node.field_college
-field_name: field_college
+id: node.field_staff_profile_college
+field_name: field_staff_profile_college
 entity_type: node
 type: list_string
 settings:
