@@ -83,8 +83,8 @@ function staff_profile_secondary_handle_feeds() {
     $mynode->body->format = 'basic';
 
     // Handle all the normal fields
-    $mynode->set('field_staff_profile_first_name', $profile['field_first_name']);
-    $mynode->set('field_staff_profile_last_name', $profile['field_last_name']);
+    $mynode->set('field_staff_profile_first_name', $profile['field_staff_profile_first_name']);
+    $mynode->set('field_staff_profile_last_name', $profile['field_staff_profile_last_name']);
     $mynode->set('field_staff_profile_email', $profile['field_staff_profile_email']);
     $mynode->set('field_staff_profile_netid', $profile['field_staff_profile_netid']);
     $mynode->set('field_staff_profile_pref_name', $profile['field_staff_profile_pref_name']);
@@ -95,7 +95,7 @@ function staff_profile_secondary_handle_feeds() {
     $mynode->set('field_staff_profile_job_title', $profile['field_staff_profile_job_title']);
     $mynode->set('field_staff_profile_phone', $profile['field_staff_profile_phone']);
     $mynode->set('field_staff_profile_fax', $profile['field_staff_profile_fax']);
-    $mynode->set('field_staff_profile_college', $profile['field_colle']);
+    $mynode->set('field_staff_profile_college', $profile['field_staff_profile_college']);
     $mynode->set('field_staff_profile_location', $profile['field_staff_profile_location']);
     $mynode->set('field_staff_profile_region', (!empty($profile['field_staff_profile_region']) && (intval($profile['field_staff_profile_region']) > 0)) ? $profile['field_staff_profile_region'] : '');
     $mynode->set('field_staff_profile_cty_dept', $profile['field_staff_profile_cty_dept']);
@@ -112,7 +112,7 @@ function staff_profile_secondary_handle_feeds() {
 
 
     // Handle the base county
-    $taxonomy = taxonomy_term_load_multiple_by_name($profile['field_base_county'], 'counties_in_iowa');
+    $taxonomy = taxonomy_term_load_multiple_by_name($profile['field_staff_profile_base_county'], 'counties_in_iowa');
     $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
     $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 
@@ -128,7 +128,7 @@ function staff_profile_secondary_handle_feeds() {
 
     // Handle counties served
     $mynode->field_staff_profile_cty_served = [array()];
-    $temp_array = explode(', ', $profile['field_counties_served']);
+    $temp_array = explode(', ', $profile['field_staff_profile_cty_served']);
     foreach ($temp_array as $index => $temp_term) {
       $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'counties_in_iowa');
       if (!empty($taxon) && array_keys($taxon)[0] > 0) {
