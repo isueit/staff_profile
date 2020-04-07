@@ -6,8 +6,8 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_addr
     - field.field.node.staff_profile.field_staff_profile_base_county
     - field.field.node.staff_profile.field_staff_profile_college
-    - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_cty_dept
+    - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_departmentid
     - field.field.node.staff_profile.field_staff_profile_email
     - field.field.node.staff_profile.field_staff_profile_fax
@@ -16,15 +16,16 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_last_name
     - field.field.node.staff_profile.field_staff_profile_location
     - field.field.node.staff_profile.field_staff_profile_netid
+    - field.field.node.staff_profile.field_staff_profile_pgm_areas
     - field.field.node.staff_profile.field_staff_profile_phone
     - field.field.node.staff_profile.field_staff_profile_pref_name
     - field.field.node.staff_profile.field_staff_profile_pref_phone
-    - field.field.node.staff_profile.field_staff_profile_pgm_areas
+    - field.field.node.staff_profile.field_staff_profile_pref_title
     - field.field.node.staff_profile.field_staff_profile_region
+    - field.field.node.staff_profile.field_staff_profile_smugmug
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
-    - field.field.node.staff_profile.field_staff_profile_pref_title
     - node.type.staff_profile
   module:
     - address
@@ -110,6 +111,7 @@ third_party_settings:
         - field_staff_profile_pref_title
         - field_staff_profile_pref_name
         - field_staff_profile_pref_phone
+        - field_staff_profile_smugmug
       parent_name: ''
       weight: 2
       format_type: fieldset
@@ -159,12 +161,6 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
-  field_staff_profile_cty_served:
-    weight: 28
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_staff_profile_cty_dept:
     weight: 124
     settings:
@@ -172,6 +168,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_staff_profile_cty_served:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_staff_profile_departmentid:
     weight: 24
@@ -233,6 +235,12 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_staff_profile_pgm_areas:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_staff_profile_phone:
     weight: 19
     settings:
@@ -255,11 +263,13 @@ content:
     third_party_settings: {  }
     type: telephone_default
     region: content
-  field_staff_profile_pgm_areas:
-    weight: 25
-    settings: {  }
+  field_staff_profile_pref_title:
+    weight: 126
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: string_textfield
     region: content
   field_staff_profile_region:
     weight: 21
@@ -267,6 +277,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_staff_profile_smugmug:
+    weight: 129
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_staff_profile_sort_order:
     type: weight_selector
@@ -281,14 +299,6 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
-  field_staff_profile_pref_title:
-    weight: 126
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   path:
     type: path
     weight: 8

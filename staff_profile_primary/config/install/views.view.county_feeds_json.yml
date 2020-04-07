@@ -5,8 +5,8 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_staff_profile_base_county
     - field.storage.node.field_staff_profile_college
-    - field.storage.node.field_staff_profile_cty_served
     - field.storage.node.field_staff_profile_cty_dept
+    - field.storage.node.field_staff_profile_cty_served
     - field.storage.node.field_staff_profile_departmentid
     - field.storage.node.field_staff_profile_email
     - field.storage.node.field_staff_profile_fax
@@ -15,13 +15,14 @@ dependencies:
     - field.storage.node.field_staff_profile_last_name
     - field.storage.node.field_staff_profile_location
     - field.storage.node.field_staff_profile_netid
+    - field.storage.node.field_staff_profile_pgm_areas
     - field.storage.node.field_staff_profile_phone
     - field.storage.node.field_staff_profile_pref_name
     - field.storage.node.field_staff_profile_pref_phone
-    - field.storage.node.field_staff_profile_pgm_areas
-    - field.storage.node.field_staff_profile_region
-    - field.storage.node.field_staff_profile_staffid
     - field.storage.node.field_staff_profile_pref_title
+    - field.storage.node.field_staff_profile_region
+    - field.storage.node.field_staff_profile_smugmug
+    - field.storage.node.field_staff_profile_staffid
     - node.type.staff_profile
   module:
     - address
@@ -1839,6 +1840,69 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_staff_profile_smugmug:
+          id: field_staff_profile_smugmug
+          table: node__field_staff_profile_smugmug
+          field: field_staff_profile_smugmug
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       filters:
         status:
           value: '1'
@@ -1953,8 +2017,8 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_staff_profile_base_county'
         - 'config:field.storage.node.field_staff_profile_college'
-        - 'config:field.storage.node.field_staff_profile_cty_served'
         - 'config:field.storage.node.field_staff_profile_cty_dept'
+        - 'config:field.storage.node.field_staff_profile_cty_served'
         - 'config:field.storage.node.field_staff_profile_departmentid'
         - 'config:field.storage.node.field_staff_profile_email'
         - 'config:field.storage.node.field_staff_profile_fax'
@@ -1963,13 +2027,14 @@ display:
         - 'config:field.storage.node.field_staff_profile_last_name'
         - 'config:field.storage.node.field_staff_profile_location'
         - 'config:field.storage.node.field_staff_profile_netid'
+        - 'config:field.storage.node.field_staff_profile_pgm_areas'
         - 'config:field.storage.node.field_staff_profile_phone'
         - 'config:field.storage.node.field_staff_profile_pref_name'
         - 'config:field.storage.node.field_staff_profile_pref_phone'
-        - 'config:field.storage.node.field_staff_profile_pgm_areas'
-        - 'config:field.storage.node.field_staff_profile_region'
-        - 'config:field.storage.node.field_staff_profile_staffid'
         - 'config:field.storage.node.field_staff_profile_pref_title'
+        - 'config:field.storage.node.field_staff_profile_region'
+        - 'config:field.storage.node.field_staff_profile_smugmug'
+        - 'config:field.storage.node.field_staff_profile_staffid'
   rest_export_1:
     display_plugin: rest_export
     id: rest_export_1
@@ -2009,8 +2074,8 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_staff_profile_base_county'
         - 'config:field.storage.node.field_staff_profile_college'
-        - 'config:field.storage.node.field_staff_profile_cty_served'
         - 'config:field.storage.node.field_staff_profile_cty_dept'
+        - 'config:field.storage.node.field_staff_profile_cty_served'
         - 'config:field.storage.node.field_staff_profile_departmentid'
         - 'config:field.storage.node.field_staff_profile_email'
         - 'config:field.storage.node.field_staff_profile_fax'
@@ -2019,10 +2084,11 @@ display:
         - 'config:field.storage.node.field_staff_profile_last_name'
         - 'config:field.storage.node.field_staff_profile_location'
         - 'config:field.storage.node.field_staff_profile_netid'
+        - 'config:field.storage.node.field_staff_profile_pgm_areas'
         - 'config:field.storage.node.field_staff_profile_phone'
         - 'config:field.storage.node.field_staff_profile_pref_name'
         - 'config:field.storage.node.field_staff_profile_pref_phone'
-        - 'config:field.storage.node.field_staff_profile_pgm_areas'
-        - 'config:field.storage.node.field_staff_profile_region'
-        - 'config:field.storage.node.field_staff_profile_staffid'
         - 'config:field.storage.node.field_staff_profile_pref_title'
+        - 'config:field.storage.node.field_staff_profile_region'
+        - 'config:field.storage.node.field_staff_profile_smugmug'
+        - 'config:field.storage.node.field_staff_profile_staffid'

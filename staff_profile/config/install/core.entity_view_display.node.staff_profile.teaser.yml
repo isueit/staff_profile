@@ -7,8 +7,8 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_addr
     - field.field.node.staff_profile.field_staff_profile_base_county
     - field.field.node.staff_profile.field_staff_profile_college
-    - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_cty_dept
+    - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_departmentid
     - field.field.node.staff_profile.field_staff_profile_email
     - field.field.node.staff_profile.field_staff_profile_fax
@@ -17,15 +17,16 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_last_name
     - field.field.node.staff_profile.field_staff_profile_location
     - field.field.node.staff_profile.field_staff_profile_netid
+    - field.field.node.staff_profile.field_staff_profile_pgm_areas
     - field.field.node.staff_profile.field_staff_profile_phone
     - field.field.node.staff_profile.field_staff_profile_pref_name
     - field.field.node.staff_profile.field_staff_profile_pref_phone
-    - field.field.node.staff_profile.field_staff_profile_pgm_areas
+    - field.field.node.staff_profile.field_staff_profile_pref_title
     - field.field.node.staff_profile.field_staff_profile_region
+    - field.field.node.staff_profile.field_staff_profile_smugmug
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
-    - field.field.node.staff_profile.field_staff_profile_pref_title
     - node.type.staff_profile
   module:
     - text
@@ -52,8 +53,8 @@ hidden:
   field_staff_profile_addr: true
   field_staff_profile_base_county: true
   field_staff_profile_college: true
-  field_staff_profile_cty_served: true
   field_staff_profile_cty_dept: true
+  field_staff_profile_cty_served: true
   field_staff_profile_departmentid: true
   field_staff_profile_email: true
   field_staff_profile_fax: true
@@ -62,12 +63,13 @@ hidden:
   field_staff_profile_last_name: true
   field_staff_profile_location: true
   field_staff_profile_netid: true
+  field_staff_profile_pgm_areas: true
   field_staff_profile_phone: true
   field_staff_profile_pref_name: true
   field_staff_profile_pref_phone: true
-  field_staff_profile_pgm_areas: true
+  field_staff_profile_pref_title: true
   field_staff_profile_region: true
+  field_staff_profile_smugmug: true
   field_staff_profile_sort_order: true
   field_staff_profile_staffid: true
   field_staff_profile_stale: true
-  field_staff_profile_pref_title: true

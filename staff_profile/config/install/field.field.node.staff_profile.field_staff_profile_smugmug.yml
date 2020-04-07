@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_staff_profile_smugmug
+    - node.type.staff_profile
+id: node.staff_profile.field_staff_profile_smugmug
+field_name: field_staff_profile_smugmug
+entity_type: node
+bundle: staff_profile
+label: 'SmugMug ID'
+description: 'ID of your staff photo from SmugMug, see <a href="https://my.extension.iastate.edu/content/smugmug-photo-gallery" target="_blank">https://my.extension.iastate.edu/content/smugmug-photo-gallery</a>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

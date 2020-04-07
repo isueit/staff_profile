@@ -3,6 +3,9 @@ div.font-weight-bold {width:20%;}
 div.staff_profile_counties_served div.font-weight-bold {float:left;}
 div.staff_profile_counties_served div.staff_profile_counties_served {width:80%; padding-left:5px;}
 
+/* SmugMug image styles */
+img.staff_profile_smugmug {max-width:200px;  margin: 10px 0px; }
+
 /* Don't need to display country */
 p.address span.country {display:none;}
 

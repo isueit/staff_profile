@@ -6,8 +6,8 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_addr
     - field.field.node.staff_profile.field_staff_profile_base_county
     - field.field.node.staff_profile.field_staff_profile_college
-    - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_cty_dept
+    - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_departmentid
     - field.field.node.staff_profile.field_staff_profile_email
     - field.field.node.staff_profile.field_staff_profile_fax
@@ -16,15 +16,16 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_last_name
     - field.field.node.staff_profile.field_staff_profile_location
     - field.field.node.staff_profile.field_staff_profile_netid
+    - field.field.node.staff_profile.field_staff_profile_pgm_areas
     - field.field.node.staff_profile.field_staff_profile_phone
     - field.field.node.staff_profile.field_staff_profile_pref_name
     - field.field.node.staff_profile.field_staff_profile_pref_phone
-    - field.field.node.staff_profile.field_staff_profile_pgm_areas
+    - field.field.node.staff_profile.field_staff_profile_pref_title
     - field.field.node.staff_profile.field_staff_profile_region
+    - field.field.node.staff_profile.field_staff_profile_smugmug
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
-    - field.field.node.staff_profile.field_staff_profile_pref_title
     - node.type.staff_profile
   module:
     - address
@@ -32,6 +33,7 @@ dependencies:
     - field_formatter_class
     - field_group
     - options
+    - staff_profile
     - text
     - user
 third_party_settings:
@@ -42,7 +44,7 @@ third_party_settings:
         - field_staff_profile_email
         - field_staff_profile_pref_phone
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: fieldset
       region: content
       format_settings:
@@ -59,7 +61,7 @@ third_party_settings:
         - field_staff_profile_base_county
         - field_staff_profile_cty_served
       parent_name: ''
-      weight: 3
+      weight: 4
       format_type: fieldset
       region: content
       format_settings:
@@ -75,7 +77,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -101,6 +103,14 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
+  field_staff_profile_cty_dept:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_staff_profile_cty_served:
     weight: 8
     label: inline
@@ -112,14 +122,6 @@ content:
       field_formatter_class:
         class: staff_profile_counties_served
     type: entity_reference_label
-    region: content
-  field_staff_profile_cty_dept:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
   field_staff_profile_email:
     weight: 3
@@ -135,14 +137,6 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
-  field_staff_profile_pref_phone:
-    weight: 4
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_staff_profile_pgm_areas:
     weight: 5
     label: inline
@@ -155,6 +149,22 @@ content:
         class: ''
     type: entity_reference_label
     region: content
+  field_staff_profile_pref_phone:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_staff_profile_pref_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_staff_profile_region:
     weight: 3
     label: inline
@@ -164,13 +174,12 @@ content:
     third_party_settings: {  }
     type: number_integer
     region: content
-  field_staff_profile_pref_title:
-    weight: 1
+  field_staff_profile_smugmug:
+    weight: 2
     label: hidden
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
-    type: string
+    type: smugmug_id_formatter
     region: content
 hidden:
   field_staff_profile_departmentid: true
