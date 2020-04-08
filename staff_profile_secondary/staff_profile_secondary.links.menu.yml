@@ -1,0 +1,5 @@
+staff_profile_secondary.secondary_settings_form:
+  title: 'Staff Profile Secondary Settings'
+  route_name: staff_profile_secondary.secondary_settings_form
+  description: 'Change settings for Staff Profile on secondary sites'
+  parent: system.admin_config_content

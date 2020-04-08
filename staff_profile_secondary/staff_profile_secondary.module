@@ -52,11 +52,18 @@ function staff_profile_secondary_cron() {
  * Pull in the feeds
  */
 function staff_profile_secondary_handle_feeds() {
+  $config = \Drupal::config('staff_profile_secondary.settings');
+  if (empty($config->get('sync_url'))) {
+    \Drupal::logger('staff_profile_secondary')->warning('Need to set a URL for the JSON feed to Sync from Staff Directory');
+    return;
+  }
+  $feedUrl = $config->get('sync_url');
+
   // Get all Staff Profile nodes
   $nids = \Drupal::entityQuery('node')->condition('type', 'staff_profile')->execute();
   $nodes =  Node::loadMultiple($nids);
 
-  $fromFeed = file_get_contents('http://local.test/staffdir/feeds/county/story');
+  $fromFeed = file_get_contents($feedUrl);
   $profiles = json_decode($fromFeed, TRUE);
 
   $count = 0;
