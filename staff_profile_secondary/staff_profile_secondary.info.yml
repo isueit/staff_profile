@@ -6,3 +6,4 @@ version: '8.x-1.0-dev'
 package: 'ISUEO'
 dependencies:
   - staff_profile:staff_profile
+  - metatag:metatag

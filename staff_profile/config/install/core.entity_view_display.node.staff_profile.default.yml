@@ -5,6 +5,7 @@ dependencies:
     - field.field.node.staff_profile.body
     - field.field.node.staff_profile.field_staff_profile_addr
     - field.field.node.staff_profile.field_staff_profile_base_county
+    - field.field.node.staff_profile.field_staff_profile_canonical
     - field.field.node.staff_profile.field_staff_profile_college
     - field.field.node.staff_profile.field_staff_profile_cty_dept
     - field.field.node.staff_profile.field_staff_profile_cty_served
@@ -182,6 +183,7 @@ content:
     type: smugmug_id_formatter
     region: content
 hidden:
+  field_staff_profile_canonical: true
   field_staff_profile_departmentid: true
   field_staff_profile_fax: true
   field_staff_profile_first_name: true

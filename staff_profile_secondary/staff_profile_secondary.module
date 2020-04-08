@@ -100,6 +100,7 @@ function staff_profile_secondary_handle_feeds() {
     $mynode->set('field_staff_profile_region', (!empty($profile['field_staff_profile_region']) && (intval($profile['field_staff_profile_region']) > 0)) ? $profile['field_staff_profile_region'] : '');
     $mynode->set('field_staff_profile_cty_dept', $profile['field_staff_profile_cty_dept']);
     $mynode->set('field_staff_profile_smugmug', $profile['field_staff_profile_smugmug']);
+    $mynode->set('field_staff_profile_canonical', $profile['view_node']);
 
     // Handle the address field
     $mynode->field_staff_profile_addr = array(
