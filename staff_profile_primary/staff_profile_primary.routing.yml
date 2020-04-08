@@ -1,4 +1,4 @@
-staff_profile_primary.sync_settings_form:
+staff_profile_primary.primary_settings_form:
   path: 'admin/config/staff_profile_primary_settings'
   defaults:
     _form: '\Drupal\staff_profile_primary\Form\SettingsForm'

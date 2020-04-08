@@ -1,8 +1,8 @@
 staff_profile_primary.primary_settings_form:
   title: 'Staff Profile Primary Settings'
-  route_name: staff_profile_primary.sync_settings_form
+  route_name: staff_profile_primary.primary_settings_form
   description: 'Change settings for Staff Profile Syncing'
-  parent: system.admin_config_system
+  parent: system.admin_config_content
 
 staff_profile_primary.search:
   title: 'Search'
