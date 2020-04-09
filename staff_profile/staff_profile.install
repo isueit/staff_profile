@@ -41,6 +41,16 @@ function staff_profile_install() {
     $term = Term::create(array('vid' => $vid, 'name' => 'Business & Industry'))->save();
   }
 
+  $vid = 'teams_groups';
+  if (!isset($vocabs[$vid])) {
+    $vocab = Vocabulary::create(array(
+      'vid' => $vid,
+      'description' => 'Teams/Groups used by Staff Profiles',
+      'name' => 'Teams/Groups',
+    ));
+    $vocab->save();
+  }
+
   // Set up permissions, allow users to edit their own staff profile
   user_role_grant_permissions('content_editor', array(
     'edit any staff_profile content',
