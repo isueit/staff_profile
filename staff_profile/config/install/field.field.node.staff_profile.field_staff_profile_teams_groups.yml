@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.storage.node.field_staff_profile_teams_groups
     - node.type.staff_profile
-    - taxonomy.vocabulary.teams_groups
 id: node.staff_profile.field_staff_profile_teams_groups
 field_name: field_staff_profile_teams_groups
 entity_type: node
