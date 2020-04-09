@@ -27,6 +27,7 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
+    - field.field.node.staff_profile.field_staff_profile_teams_groups
     - node.type.staff_profile
   module:
     - address
@@ -61,6 +62,7 @@ third_party_settings:
         - field_staff_profile_location
         - field_staff_profile_base_county
         - field_staff_profile_cty_served
+        - field_staff_profile_teams_groups
       parent_name: ''
       weight: 4
       format_type: fieldset
@@ -181,6 +183,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: smugmug_id_formatter
+    region: content
+  field_staff_profile_teams_groups:
+    weight: 9
+    label: above
+    settings:
+      link: false
+    third_party_settings:
+      field_delimiter:
+        delimiter: ','
+      field_formatter_class:
+        class: staff_profile_teams_groups
+    type: entity_reference_label
     region: content
 hidden:
   field_staff_profile_canonical: true

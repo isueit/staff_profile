@@ -27,6 +27,7 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
+    - field.field.node.staff_profile.field_staff_profile_teams_groups
     - node.type.staff_profile
   module:
     - address
@@ -113,6 +114,7 @@ third_party_settings:
         - field_staff_profile_pref_name
         - field_staff_profile_pref_phone
         - field_staff_profile_smugmug
+        - field_staff_profile_teams_groups
       parent_name: ''
       weight: 2
       format_type: fieldset
@@ -300,6 +302,12 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_staff_profile_teams_groups:
+    weight: 130
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   path:
     type: path
     weight: 8

@@ -28,6 +28,7 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
+    - field.field.node.staff_profile.field_staff_profile_teams_groups
     - node.type.staff_profile
   module:
     - text
@@ -75,3 +76,4 @@ hidden:
   field_staff_profile_sort_order: true
   field_staff_profile_staffid: true
   field_staff_profile_stale: true
+  field_staff_profile_teams_groups: true

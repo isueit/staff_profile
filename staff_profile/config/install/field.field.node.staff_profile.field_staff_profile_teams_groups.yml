@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_staff_profile_teams_groups
+    - node.type.staff_profile
+    - taxonomy.vocabulary.teams_groups
+id: node.staff_profile.field_staff_profile_teams_groups
+field_name: field_staff_profile_teams_groups
+entity_type: node
+bundle: staff_profile
+label: Teams/Groups
+description: 'Primarily used to export feeds. Only add yourself to a team if you know you belong on that team.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      teams_groups: teams_groups
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
