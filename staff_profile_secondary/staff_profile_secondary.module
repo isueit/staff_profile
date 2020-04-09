@@ -171,3 +171,24 @@ function staff_profile_secondary_handle_feeds() {
   // Log a message to ensure it ran
   \Drupal::logger('staff_profile_secondary')->info('Number of Staff Imported: ' . $count);
 }
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function staff_profile_secondary_form_node_form_alter(&$form, &$form_state, $form_id)
+{
+  // Make sure we're on the staff_profile node edit screen
+  $node = $form_state->getFormObject()->getEntity();
+  if ($node->getType() == 'staff_profile') {
+    staff_profile_mark_database_fields_readonly($form);
+
+    $form['field_staff_profile_cty_dept']['widget'][0]['value']['#disabled'] = TRUE;
+    $form['field_staff_profile_pref_title']['widget'][0]['value']['#disabled'] = TRUE;
+    $form['field_staff_profile_pref_name']['widget'][0]['value']['#disabled'] = TRUE;
+    $form['field_staff_profile_pref_phone']['widget'][0]['value']['#disabled'] = TRUE;
+    $form['field_staff_profile_smugmug']['widget'][0]['value']['#disabled'] = TRUE;
+
+    $form['body']['widget']['#disabled'] = TRUE;
+  }
+}
