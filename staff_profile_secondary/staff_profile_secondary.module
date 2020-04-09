@@ -66,6 +66,13 @@ function staff_profile_secondary_handle_feeds() {
   $fromFeed = file_get_contents($feedUrl);
   $profiles = json_decode($fromFeed, TRUE);
 
+  // Mark nodes as "stale"
+  foreach ($nodes as $node) {
+    if ($node->isPublished() && !empty($node->field_staff_profile_staffid->value)) {
+      $node->set('field_staff_profile_stale', TRUE)->save();
+    }
+  }
+
   $count = 0;
 
   foreach ($profiles as $profile) {
@@ -121,7 +128,7 @@ function staff_profile_secondary_handle_feeds() {
 
 
     // Handle the base county
-    $taxonomy = taxonomy_term_load_multiple_by_name($profile['field_staff_profile_base_county'], 'counties_in_iowa');
+    $taxonomy = taxonomy_term_load_multiple_by_name(str_replace('&#039;', '\'', $profile['field_staff_profile_base_county']), 'counties_in_iowa');
     $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
     $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 
@@ -137,7 +144,7 @@ function staff_profile_secondary_handle_feeds() {
 
     // Handle counties served
     $mynode->field_staff_profile_cty_served = [array()];
-    $temp_array = explode(', ', $profile['field_staff_profile_cty_served']);
+    $temp_array = explode(', ', str_replace('&#039;', '\'', $profile['field_staff_profile_cty_served']));
     foreach ($temp_array as $index => $temp_term) {
       $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'counties_in_iowa');
       if (!empty($taxon) && array_keys($taxon)[0] > 0) {
@@ -150,6 +157,15 @@ function staff_profile_secondary_handle_feeds() {
     $mynode->save();
 
     $count++;
+  }
+
+  // Unpublish nodes that are still marked "stale"
+  foreach ($nodes as $node) {
+    if ($node->get('field_staff_profile_stale')->value) {
+      $node->set('field_staff_profile_stale', FALSE);
+      $node->setUnpublished();
+      $node->save();
+    }
   }
 
   // Log a message to ensure it ran
