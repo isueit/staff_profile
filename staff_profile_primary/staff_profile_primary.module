@@ -10,6 +10,25 @@ use \Drupal\encrypt\Entity\EncryptionProfile;
  */
 function staff_profile_primary_rebuild() {
   staff_profile_primary_profile_from_database();
+
+  /*
+  $file = fopen(\Drupal::service('module_handler')->getModule('staff_profile_primary')->getPath() . '/smugmug.txt', 'r');
+  while ($line = fgets($file)) {
+    $exploded = explode(':', $line);
+
+    $nids = \Drupal::entityQuery('node')->condition('type', 'staff_profile')->condition('field_staff_profile_netid', $exploded[0])->execute();
+    $nodes =  Node::loadMultiple($nids);
+    if (!empty($nodes)) {
+      foreach ($nodes as $node) {
+        \Drupal::logger('staff_profile_primary')->info('Found: ' . count($nodes) . $exploded[0] . ' - ' . $exploded[1]);
+        $node->set('field_staff_profile_smugmug', trim($exploded[1]))->save();
+      }
+    } else {
+      \Drupal::logger('staff_profile_primary')->info('Not Found: ' . $exploded[0]);
+    }
+  }
+  */
+
 }
 
 /**
