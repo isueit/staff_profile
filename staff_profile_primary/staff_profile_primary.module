@@ -9,6 +9,7 @@ use \Drupal\encrypt\Entity\EncryptionProfile;
  * Implements hook_rebuild()
  */
 function staff_profile_primary_rebuild() {
+  \Drupal::logger('staff_profile_primary')->info('Starting staff profile refresh from hook_rebuild page');
   staff_profile_primary_profile_from_database();
 
   /*
@@ -35,7 +36,7 @@ function staff_profile_primary_rebuild() {
  * Implements hook_cron().
  */
 function staff_profile_primary_cron() {
-  staff_profile_primary_profile_from_database();
+  //staff_profile_primary_profile_from_database();
 }
 
 function staff_profile_primary_profile_from_database () {

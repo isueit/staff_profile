@@ -16,3 +16,11 @@ staff_profile_primary.view_my_profile:
     _title: 'View My Profile'
   requirements:
     _permission: 'edit own staff_profile content'
+
+staff_profile_primary.refresh_staff:
+  path: '/refresh_staff_89fsdfsdf3243S20fsdfgtgDFDf4gbiuhjhn3sQW9T23423'
+  defaults:
+    _controller: '\Drupal\staff_profile_primary\Controller\RefreshStaff::refresh_staff'
+    _title: 'Refresh Staff Profiles'
+  requirements:
+    _permission: 'access content'
