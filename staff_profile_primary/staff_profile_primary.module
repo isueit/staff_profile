@@ -13,6 +13,7 @@ function staff_profile_primary_rebuild() {
   staff_profile_primary_profile_from_database();
 
   /*
+  // Code to set SmugMug ID's from a file that contains: netID:SmugMugId
   $file = fopen(\Drupal::service('module_handler')->getModule('staff_profile_primary')->getPath() . '/smugmug.txt', 'r');
   while ($line = fgets($file)) {
     $exploded = explode(':', $line);
@@ -125,6 +126,10 @@ function staff_profile_primary_profile_from_database () {
     }
 
     $mynode->field_staff_profile_staffid->value = $profile->StaffID;
+
+    if ($mynode->get('field_staff_profile_first_name')->getString() == $mynode->get('field_staff_profile_pref_name')->getString()) {
+      $mynode->set('field_staff_profile_pref_name', $profile->FirstName);
+    }
     $mynode->field_staff_profile_first_name->value = $profile->FirstName;
     $mynode->field_staff_profile_last_name->value = $profile->LastName;
     $mynode->field_staff_profile_addr = array(
@@ -136,7 +141,15 @@ function staff_profile_primary_profile_from_database () {
       'postal_code' => $profile->Zip,
     );
     $mynode->field_staff_profile_departmentid->value = $profile->DepartmentID;
+
+    if ($mynode->get('field_staff_profile_job_title')->getString() == $mynode->get('field_staff_profile_pref_title')->getString()) {
+      $mynode->set('field_staff_profile_pref_title', $jobtitle);
+    }
     $mynode->field_staff_profile_job_title->value = $jobtitle;
+
+    if ($mynode->get('field_staff_profile_phone')->getString() == $mynode->get('field_staff_profile_pref_phone')->getString()) {
+      $mynode->set('field_staff_profile_pref_phone', $profile->Phone);
+    }
     $mynode->field_staff_profile_phone->value = $profile->Phone;
     $mynode->field_staff_profile_fax->value = $profile->Fax;
 
