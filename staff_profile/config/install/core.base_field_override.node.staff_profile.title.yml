@@ -8,7 +8,7 @@ field_name: title
 entity_type: node
 bundle: staff_profile
 label: Name
-description: 'Will automaticall be set to "PreferredName Lastname"'
+description: 'Will automatically be set to "PreferredName Lastname"'
 required: true
 translatable: true
 default_value: {  }
