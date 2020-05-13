@@ -31,12 +31,11 @@ class SettingsForm extends ConfigFormBase {
     public function buildForm(array $form, FormStateInterface $form_state) {
       $config = $this->config('staff_profile_secondary.settings');
       $form['sync_url'] = array(
-        '#type' => 'textfield',
-        '#title' => $this->t('URL of JSON Feed'),
-        '#description' => $this->t('URL of JSON feed to populate staff for this site. Use %20 instead of spaces, ie black%20hawk & pottawattamie%20-%20west'),
-        '#maxlength' => 255,
+        '#type' => 'textarea',
+        '#title' => $this->t('URLs of JSON Feeds'),
+        '#description' => $this->t('URLs of JSON feeds to populate staff for this site. Use %20 instead of spaces, ie black%20hawk & pottawattamie%20-%20west <br>Separate each url with a new line'),
         '#size' => 64,
-        '#default_value' => !empty($config->get('sync_url')) ? $config->get('sync_url') : '',
+        '#default_value' => !empty($config->get('sync_url')) ? preg_replace('/,/',"\r\n",$config->get('sync_url')) : '',
         '#required' => TRUE,
       );
 
@@ -50,8 +49,7 @@ class SettingsForm extends ConfigFormBase {
       parent::submitForm($form, $form_state);
       //If checked, run sync
       $this->config('staff_profile_secondary.settings')
-        ->set('sync_url', $form_state->getValue('sync_url'))
+        ->set('sync_url', preg_replace('/\s+(?=[hw])/',',',$form_state->getValue('sync_url')))
         ->save();
-
   }
 }
