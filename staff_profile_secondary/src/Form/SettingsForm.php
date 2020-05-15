@@ -49,7 +49,7 @@ class SettingsForm extends ConfigFormBase {
       parent::submitForm($form, $form_state);
       //If checked, run sync
       $this->config('staff_profile_secondary.settings')
-        ->set('sync_url', preg_replace('/\s+(?=[hw])/',',',$form_state->getValue('sync_url')))
+        ->set('sync_url', preg_replace('/\s+(?=[hw])/',',',trim($form_state->getValue('sync_url'))))
         ->save();
   }
 }
