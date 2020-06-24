@@ -35,7 +35,7 @@ dependencies:
     - text
     - user
 id: county_feeds_json
-label: 'County Feeds - JSON'
+label: 'Feeds - JSON'
 module: views
 description: ''
 tag: ''
@@ -2103,7 +2103,7 @@ display:
   rest_export_1:
     display_plugin: rest_export
     id: rest_export_1
-    display_title: 'REST export'
+    display_title: 'County Feeds'
     position: 1
     display_options:
       display_extenders: {  }
@@ -2126,6 +2126,7 @@ display:
             title:
               alias: ''
               raw_output: false
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:
@@ -2133,6 +2134,69 @@ display:
         - 'languages:language_interface'
         - request_format
         - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.body'
+        - 'config:field.storage.node.field_staff_profile_base_county'
+        - 'config:field.storage.node.field_staff_profile_college'
+        - 'config:field.storage.node.field_staff_profile_cty_dept'
+        - 'config:field.storage.node.field_staff_profile_cty_served'
+        - 'config:field.storage.node.field_staff_profile_departmentid'
+        - 'config:field.storage.node.field_staff_profile_email'
+        - 'config:field.storage.node.field_staff_profile_fax'
+        - 'config:field.storage.node.field_staff_profile_first_name'
+        - 'config:field.storage.node.field_staff_profile_job_title'
+        - 'config:field.storage.node.field_staff_profile_last_name'
+        - 'config:field.storage.node.field_staff_profile_location'
+        - 'config:field.storage.node.field_staff_profile_netid'
+        - 'config:field.storage.node.field_staff_profile_pgm_areas'
+        - 'config:field.storage.node.field_staff_profile_phone'
+        - 'config:field.storage.node.field_staff_profile_pref_name'
+        - 'config:field.storage.node.field_staff_profile_pref_phone'
+        - 'config:field.storage.node.field_staff_profile_pref_title'
+        - 'config:field.storage.node.field_staff_profile_region'
+        - 'config:field.storage.node.field_staff_profile_smugmug'
+        - 'config:field.storage.node.field_staff_profile_staffid'
+        - 'config:field.storage.node.field_staff_profile_teams_groups'
+  rest_export_2:
+    display_plugin: rest_export
+    id: rest_export_2
+    display_title: 'Full Feed'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: feeds/full
+      pager:
+        type: some
+        options:
+          items_per_page: 0
+          offset: 0
+      style:
+        type: serializer
+        options:
+          uses_fields: false
+          formats:
+            json: json
+      row:
+        type: data_field
+        options:
+          field_options:
+            title:
+              alias: ''
+              raw_output: false
+      display_description: ''
+      arguments: {  }
+      defaults:
+        arguments: false
+        relationships: false
+      relationships: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
         - 'user.node_grants:view'
         - user.permissions
       tags:
