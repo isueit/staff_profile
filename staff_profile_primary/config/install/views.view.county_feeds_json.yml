@@ -111,8 +111,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ title | replace({ ''&#039;'': "''" }) | raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -239,8 +239,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ field_staff_profile_last_name | replace({ ''&#039;'': "''" }) | raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -302,8 +302,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ field_staff_profile_cty_served | replace({ ''&#039;'': "''" }) | raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -662,8 +662,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ field_staff_profile_base_county | replace({ ''&#039;'': "''" }) | raw }}'
             make_link: false
             path: ''
             absolute: false
