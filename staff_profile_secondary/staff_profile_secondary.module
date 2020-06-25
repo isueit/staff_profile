@@ -70,9 +70,10 @@ function staff_profile_secondary_handle_feeds() {
 
   $feedUrls = explode(',', $config->get('sync_url'));
   $count = 0;
-  
+
   foreach ($feedUrls as $feedUrl) {
     $fromFeed = file_get_contents($feedUrl);
+    $fromFeed = str_replace('\u0026#039;', '\'', $fromFeed);
     $profiles = json_decode($fromFeed, TRUE);
 
     foreach ($profiles as $profile) {
