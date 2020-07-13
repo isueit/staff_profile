@@ -112,7 +112,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ title | replace({ ''&#039;'': "''" }) | raw }}'
+            text: '{{ title | replace({ ''&#039;'': "''"}) | raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -353,6 +353,69 @@ display:
           delta_first_last: false
           multi_type: separator
           separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_staff_profile_cty_served_1:
+          id: field_staff_profile_cty_served_1
+          table: node__field_staff_profile_cty_served
+          field: field_staff_profile_cty_served
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Phil_example_1
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ field_staff_profile_cty_served_1 | replace({ ''&#039;'': "''" }) | raw }} County'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: '; '
           field_api_classes: false
           plugin_id: field
         field_staff_profile_addr_address_line1:
@@ -2124,6 +2187,96 @@ display:
         options:
           field_options:
             title:
+              alias: ''
+              raw_output: false
+            field_staff_profile_first_name:
+              alias: ''
+              raw_output: false
+            field_staff_profile_last_name:
+              alias: ''
+              raw_output: false
+            field_staff_profile_cty_served:
+              alias: ''
+              raw_output: false
+            field_staff_profile_addr_address_line1:
+              alias: ''
+              raw_output: false
+            field_staff_profile_addr_address_line2:
+              alias: ''
+              raw_output: false
+            field_staff_profile_addr_administrative_area:
+              alias: ''
+              raw_output: false
+            field_staff_profile_addr_country_code:
+              alias: ''
+              raw_output: false
+            field_staff_profile_addr_locality:
+              alias: ''
+              raw_output: false
+            field_staff_profile_addr_postal_code:
+              alias: ''
+              raw_output: false
+            field_staff_profile_base_county:
+              alias: ''
+              raw_output: false
+            body:
+              alias: ''
+              raw_output: false
+            field_staff_profile_college:
+              alias: ''
+              raw_output: false
+            field_staff_profile_departmentid:
+              alias: ''
+              raw_output: false
+            field_staff_profile_email:
+              alias: ''
+              raw_output: false
+            field_staff_profile_fax:
+              alias: ''
+              raw_output: false
+            nid:
+              alias: ''
+              raw_output: false
+            field_staff_profile_job_title:
+              alias: ''
+              raw_output: false
+            view_node:
+              alias: ''
+              raw_output: false
+            field_staff_profile_location:
+              alias: ''
+              raw_output: false
+            field_staff_profile_netid:
+              alias: ''
+              raw_output: false
+            field_staff_profile_phone:
+              alias: ''
+              raw_output: false
+            field_staff_profile_pref_name:
+              alias: ''
+              raw_output: false
+            field_staff_profile_pref_phone:
+              alias: ''
+              raw_output: false
+            field_staff_profile_pgm_areas:
+              alias: ''
+              raw_output: false
+            field_staff_profile_region:
+              alias: ''
+              raw_output: false
+            field_staff_profile_staffid:
+              alias: ''
+              raw_output: false
+            field_staff_profile_pref_title:
+              alias: ''
+              raw_output: false
+            field_staff_profile_cty_dept:
+              alias: ''
+              raw_output: false
+            field_staff_profile_smugmug:
+              alias: ''
+              raw_output: false
+            field_staff_profile_teams_groups:
               alias: ''
               raw_output: false
       display_description: ''
