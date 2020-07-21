@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_base_county
     - field.field.node.staff_profile.field_staff_profile_canonical
     - field.field.node.staff_profile.field_staff_profile_college
+    - field.field.node.staff_profile.field_staff_profile_cty_author
     - field.field.node.staff_profile.field_staff_profile_cty_dept
     - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_departmentid
@@ -23,12 +24,15 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_pref_name
     - field.field.node.staff_profile.field_staff_profile_pref_phone
     - field.field.node.staff_profile.field_staff_profile_pref_title
+    - field.field.node.staff_profile.field_staff_profile_quals
     - field.field.node.staff_profile.field_staff_profile_region
+    - field.field.node.staff_profile.field_staff_profile_site_author
     - field.field.node.staff_profile.field_staff_profile_smugmug
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
     - field.field.node.staff_profile.field_staff_profile_teams_groups
+    - field.field.node.staff_profile.field_staff_profile_web_amb
     - node.type.staff_profile
   module:
     - text
@@ -56,6 +60,7 @@ hidden:
   field_staff_profile_base_county: true
   field_staff_profile_canonical: true
   field_staff_profile_college: true
+  field_staff_profile_cty_author: true
   field_staff_profile_cty_dept: true
   field_staff_profile_cty_served: true
   field_staff_profile_departmentid: true
@@ -71,9 +76,12 @@ hidden:
   field_staff_profile_pref_name: true
   field_staff_profile_pref_phone: true
   field_staff_profile_pref_title: true
+  field_staff_profile_quals: true
   field_staff_profile_region: true
+  field_staff_profile_site_author: true
   field_staff_profile_smugmug: true
   field_staff_profile_sort_order: true
   field_staff_profile_staffid: true
   field_staff_profile_stale: true
   field_staff_profile_teams_groups: true
+  field_staff_profile_web_amb: true

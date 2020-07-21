@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_base_county
     - field.field.node.staff_profile.field_staff_profile_canonical
     - field.field.node.staff_profile.field_staff_profile_college
+    - field.field.node.staff_profile.field_staff_profile_cty_author
     - field.field.node.staff_profile.field_staff_profile_cty_dept
     - field.field.node.staff_profile.field_staff_profile_cty_served
     - field.field.node.staff_profile.field_staff_profile_departmentid
@@ -22,12 +23,15 @@ dependencies:
     - field.field.node.staff_profile.field_staff_profile_pref_name
     - field.field.node.staff_profile.field_staff_profile_pref_phone
     - field.field.node.staff_profile.field_staff_profile_pref_title
+    - field.field.node.staff_profile.field_staff_profile_quals
     - field.field.node.staff_profile.field_staff_profile_region
+    - field.field.node.staff_profile.field_staff_profile_site_author
     - field.field.node.staff_profile.field_staff_profile_smugmug
     - field.field.node.staff_profile.field_staff_profile_sort_order
     - field.field.node.staff_profile.field_staff_profile_staffid
     - field.field.node.staff_profile.field_staff_profile_stale
     - field.field.node.staff_profile.field_staff_profile_teams_groups
+    - field.field.node.staff_profile.field_staff_profile_web_amb
     - node.type.staff_profile
   module:
     - address
@@ -125,6 +129,36 @@ third_party_settings:
         required_fields: true
       label: 'Extra Staff Info'
       region: content
+    group_web_author_info:
+      children:
+        - group_web_author_info_fold
+      parent_name: ''
+      weight: 17
+      format_type: accordion
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        effect: none
+      label: 'Web Author Info'
+    group_web_author_info_fold:
+      children:
+        - field_staff_profile_cty_author
+        - field_staff_profile_web_amb
+        - field_staff_profile_site_author
+        - field_staff_profile_quals
+      parent_name: group_web_author_info
+      weight: 20
+      format_type: accordion_item
+      region: content
+      format_settings:
+        formatter: closed
+        id: ''
+        classes: ''
+        required_fields: false
+      label: 'Web Author Info'
+_core:
+  default_config_hash: UVJMRPZ9BczSTPuRI9m5icT9SXsMPe13wVYlLm05dSk
 id: node.staff_profile.default
 targetEntityType: node
 bundle: staff_profile
@@ -163,6 +197,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_staff_profile_cty_author:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_staff_profile_cty_dept:
     weight: 124
@@ -274,12 +314,24 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_staff_profile_quals:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_staff_profile_region:
     weight: 21
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_staff_profile_site_author:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_staff_profile_smugmug:
     weight: 129
@@ -304,6 +356,12 @@ content:
     third_party_settings: {  }
   field_staff_profile_teams_groups:
     weight: 130
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_staff_profile_web_amb:
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_buttons

@@ -30,6 +30,13 @@ function staff_profile_form_node_form_alter(&$form, &$form_state, $form_id) {
     $form['field_staff_profile_email']['widget'][0]['value']['#disabled'] = TRUE;
 
     //$form['textonly'] = array('#markup' => '<div class="staff_profile_info"><h3>Important</h3>Many fields will be grayed out because this information comes from other sources. Changes to these fields would be overwritten the next time information was pulled into this record. See <a href="https://my.extension.iastate.edu/extension-staff-directory" target="_blank">https://my.extension.iastate.edu/extension-staff-directory</a> to learn more about how to change these fields.</div>');
+    $userid = \Drupal::currentUser()->id();
+    if ($userid != 1) {
+      $form['field_staff_profile_cty_author']['widget']['#disabled'] = TRUE;
+      $form['field_staff_profile_web_amb']['widget']['#disabled'] = TRUE;
+      $form['field_staff_profile_site_author']['widget']['#disabled'] = TRUE;
+      $form['field_staff_profile_quals']['widget']['#disabled'] = TRUE;
+    }
   }
 }
 
