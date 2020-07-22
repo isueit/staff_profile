@@ -52,6 +52,7 @@ function staff_profile_install() {
   }
 
   $vid = 'editor_qualifications';
+  $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
   if (!isset($vocabs[$vid])) {
     $vocab = Vocabulary::create(array(
       'vid' => $vid,
@@ -64,9 +65,15 @@ function staff_profile_install() {
     $term = Term::create(array('vid' => $vid, 'name' => 'Drupal 6 Training'))->save();
     $term = Term::create(array('vid' => $vid, 'name' => 'Drupal 7 Training'))->save();
     $term = Term::create(array('vid' => $vid, 'name' => 'Drupal 8 Training'))->save();
+  } elseif (count($terms) < 1) {
+    $term = Term::create(array('vid' => $vid, 'name' => 'Web Editor'))->save();
+    $term = Term::create(array('vid' => $vid, 'name' => 'Drupal 6 Training'))->save();
+    $term = Term::create(array('vid' => $vid, 'name' => 'Drupal 7 Training'))->save();
+    $term = Term::create(array('vid' => $vid, 'name' => 'Drupal 8 Training'))->save();
   }
 
   $vid = 'drupal_sites';
+  $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
   if (!isset($vocabs[$vid])) {
     $vocab = Vocabulary::create(array(
       'vid' => $vid,
@@ -75,6 +82,11 @@ function staff_profile_install() {
     ));
     $vocab->save();
 
+    $term = Term::create(array('vid' => $vid, 'name' => 'Human Sciences'))->save();
+    $term = Term::create(array('vid' => $vid, 'name' => 'Staffdir'))->save();
+    $term = Term::create(array('vid' => $vid, 'name' => 'IMQCC'))->save();
+    $term = Term::create(array('vid' => $vid, 'name' => 'Digital Ag'))->save();
+  } elseif (count($terms) < 1) {
     $term = Term::create(array('vid' => $vid, 'name' => 'Human Sciences'))->save();
     $term = Term::create(array('vid' => $vid, 'name' => 'Staffdir'))->save();
     $term = Term::create(array('vid' => $vid, 'name' => 'IMQCC'))->save();
