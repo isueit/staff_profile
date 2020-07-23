@@ -1,0 +1,9 @@
+sync_web_authors.sync_settings_form:
+  path: 'admin/config/sync_web_authors_settings'
+  defaults:
+    _form: '\Drupal\sync_web_authors\Form\SettingsForm'
+    _title: 'Sync Web Authors Settings'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin-route: TRUE

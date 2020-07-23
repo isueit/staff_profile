@@ -1,0 +1,5 @@
+sync_web_authors.sync_settings_form:
+  title: 'Sync Web Authors'
+  route_name: sync_web_authors.sync_settings_form
+  description: 'Change settings for Sync Web Authors'
+  parent: system.admin_config_content

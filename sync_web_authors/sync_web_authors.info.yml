@@ -1,0 +1,7 @@
+name: 'Sync Web Authors'
+type: module
+core: 8.x
+description: 'Syncs web authors'
+version: '8.x-1.0-dev'
+package: 'ISUEO'
+dependencies:
