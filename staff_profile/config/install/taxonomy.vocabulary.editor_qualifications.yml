@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Editor Qualifications'
+vid: editor_qualifications
+description: 'Editor Qualifications for use in staff profiles'
+weight: 0
