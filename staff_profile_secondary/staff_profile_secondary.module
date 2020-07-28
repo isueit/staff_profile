@@ -94,28 +94,28 @@ function staff_profile_secondary_handle_feeds() {
 
       // Handle the title and body
       $mynode->setTitle($profile['title']);
-      $mynode->set('body', $profile['body']);
+      $mynode->body->value = $profile['body'];
       $mynode->body->format = 'basic';
 
       // Handle all the normal fields
-      $mynode->set('field_staff_profile_first_name', $profile['field_staff_profile_first_name']);
-      $mynode->set('field_staff_profile_last_name', $profile['field_staff_profile_last_name']);
-      $mynode->set('field_staff_profile_email', $profile['field_staff_profile_email']);
-      $mynode->set('field_staff_profile_netid', $profile['field_staff_profile_netid']);
-      $mynode->set('field_staff_profile_pref_name', $profile['field_staff_profile_pref_name']);
-      $mynode->set('field_staff_profile_pref_phone', $profile['field_staff_profile_pref_phone']);
-      $mynode->set('field_staff_profile_pref_title', $profile['field_staff_profile_pref_title']);
-      $mynode->set('field_staff_profile_staffid', $profile['field_staff_profile_staffid']);
-      $mynode->set('field_staff_profile_departmentid', $profile['field_staff_profile_departmentid']);
-      $mynode->set('field_staff_profile_job_title', $profile['field_staff_profile_job_title']);
-      $mynode->set('field_staff_profile_phone', $profile['field_staff_profile_phone']);
-      $mynode->set('field_staff_profile_fax', $profile['field_staff_profile_fax']);
-      $mynode->set('field_staff_profile_college', $profile['field_staff_profile_college']);
-      $mynode->set('field_staff_profile_location', $profile['field_staff_profile_location']);
-      $mynode->set('field_staff_profile_region', (!empty($profile['field_staff_profile_region']) && (intval($profile['field_staff_profile_region']) > 0)) ? $profile['field_staff_profile_region'] : '');
-      $mynode->set('field_staff_profile_cty_dept', $profile['field_staff_profile_cty_dept']);
-      $mynode->set('field_staff_profile_smugmug', $profile['field_staff_profile_smugmug']);
-      $mynode->set('field_staff_profile_canonical', $profile['view_node']);
+      $mynode->field_staff_profile_first_name->value = $profile['field_staff_profile_first_name'];
+      $mynode->field_staff_profile_last_name->value = $profile['field_staff_profile_last_name'];
+      $mynode->field_staff_profile_email->value = $profile['field_staff_profile_email'];
+      $mynode->field_staff_profile_netid->value = $profile['field_staff_profile_netid'];
+      $mynode->field_staff_profile_pref_name->value = $profile['field_staff_profile_pref_name'];
+      $mynode->field_staff_profile_pref_phone->value = $profile['field_staff_profile_pref_phone'];
+      $mynode->field_staff_profile_pref_title->value = $profile['field_staff_profile_pref_title'];
+      $mynode->field_staff_profile_staffid->value = $profile['field_staff_profile_staffid'];
+      $mynode->field_staff_profile_departmentid->value = $profile['field_staff_profile_departmentid'];
+      $mynode->field_staff_profile_job_title->value = $profile['field_staff_profile_job_title'];
+      $mynode->field_staff_profile_phone->value = $profile['field_staff_profile_phone'];
+      $mynode->field_staff_profile_fax->value = $profile['field_staff_profile_fax'];
+      $mynode->field_staff_profile_college->value = $profile['field_staff_profile_college'];
+      $mynode->field_staff_profile_location->value = $profile['field_staff_profile_location'];
+      $mynode->field_staff_profile_region->value = ((!empty($profile['field_staff_profile_region']) && (intval($profile['field_staff_profile_region']) > 0)) ? $profile['field_staff_profile_region'] : '');
+      $mynode->field_staff_profile_cty_dept->value = $profile['field_staff_profile_cty_dept'];
+      $mynode->field_staff_profile_smugmug->value = $profile['field_staff_profile_smugmug'];
+      $mynode->field_staff_profile_canonical->value = $profile['view_node'];
 
       // Handle the address field
       $mynode->field_staff_profile_addr = array(
@@ -129,7 +129,11 @@ function staff_profile_secondary_handle_feeds() {
 
 
       // Handle the base county
-      $taxonomy = taxonomy_term_load_multiple_by_name(str_replace('&#039;', '\'', $profile['field_staff_profile_base_county']), 'counties_in_iowa');
+      $taxonomyStorage = \Drupal::service('entity.manager')->getStorage('taxonomy_term');
+      $taxonomy = $taxonomyStorage->loadByProperties([
+          'name' => str_replace('&#039;', '\'', $profile['field_staff_profile_base_county']),
+          'vid' => 'counties_in_iowa'
+      ]);
       $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
       $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 
@@ -137,7 +141,10 @@ function staff_profile_secondary_handle_feeds() {
       $mynode->field_staff_profile_pgm_areas = [array()];
       $temp_array = explode(', ', $profile['field_staff_profile_pgm_areas']);
       foreach ($temp_array as $index => $temp_term) {
-        $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'program_areas');
+        $taxon = $taxonomyStorage->loadByProperties([
+            'name' => $temp_term,
+            'vid' => 'program_areas'
+        ]);
         if (!empty($taxon) && array_keys($taxon)[0] > 0) {
           $mynode->field_staff_profile_pgm_areas[] = ['target_id' => array_keys($taxon)[0]];
         }
@@ -147,13 +154,16 @@ function staff_profile_secondary_handle_feeds() {
       $mynode->field_staff_profile_cty_served = [array()];
       $temp_array = explode(', ', str_replace('&#039;', '\'', $profile['field_staff_profile_cty_served']));
       foreach ($temp_array as $index => $temp_term) {
-        $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'counties_in_iowa');
+        $taxon = $taxonomyStorage->loadByProperties([
+            'name' => $temp_term,
+            'vid' => 'counties_in_iowa'
+        ]);
         if (!empty($taxon) && array_keys($taxon)[0] > 0) {
           $mynode->field_staff_profile_cty_served[] = ['target_id' => array_keys($taxon)[0]];
         }
       }
 
-      $mynode->set('field_staff_profile_stale', FALSE);
+      $mynode->field_staff_profile_stale->value = FALSE;
       $mynode->setPublished();
       $mynode->save();
 
@@ -164,7 +174,7 @@ function staff_profile_secondary_handle_feeds() {
   // Unpublish nodes that are still marked "stale"
   foreach ($nodes as $node) {
     if ($node->get('field_staff_profile_stale')->value) {
-      $node->set('field_staff_profile_stale', FALSE);
+      $node->field_staff_profile_stale->value = FALSE;
       $node->setUnpublished();
       $node->save();
     }

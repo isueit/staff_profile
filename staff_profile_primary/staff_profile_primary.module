@@ -37,7 +37,7 @@ function staff_profile_primary_rebuild() {
  * Implements hook_cron().
  */
 function staff_profile_primary_cron() {
-  //staff_profile_primary_profile_from_database();
+  staff_profile_primary_profile_from_database();
 }
 
 function staff_profile_primary_profile_from_database () {
@@ -128,7 +128,7 @@ function staff_profile_primary_profile_from_database () {
     $mynode->field_staff_profile_staffid->value = $profile->StaffID;
 
     if ($mynode->get('field_staff_profile_first_name')->getString() == $mynode->get('field_staff_profile_pref_name')->getString()) {
-      $mynode->set('field_staff_profile_pref_name', $profile->FirstName);
+      $mynode->field_staff_profile_pref_name->value = $profile->FirstName;
     }
     $mynode->field_staff_profile_first_name->value = $profile->FirstName;
     $mynode->field_staff_profile_last_name->value = $profile->LastName;
@@ -143,29 +143,36 @@ function staff_profile_primary_profile_from_database () {
     $mynode->field_staff_profile_departmentid->value = $profile->DepartmentID;
 
     if ($mynode->get('field_staff_profile_job_title')->getString() == $mynode->get('field_staff_profile_pref_title')->getString()) {
-      $mynode->set('field_staff_profile_pref_title', $jobtitle);
+      $mynode->field_staff_profile_pref_title->value = $jobtitle;
     }
     $mynode->field_staff_profile_job_title->value = $jobtitle;
 
     if ($mynode->get('field_staff_profile_phone')->getString() == $mynode->get('field_staff_profile_pref_phone')->getString()) {
-      $mynode->set('field_staff_profile_pref_phone', $profile->Phone);
+      $mynode->field_staff_profile_pref_phone->value = $profile->Phone;
     }
     $mynode->field_staff_profile_phone->value = $profile->Phone;
     $mynode->field_staff_profile_fax->value = $profile->Fax;
 
-    $taxonomy = taxonomy_term_load_multiple_by_name($profile->CountyName, 'counties_in_iowa');
+    $taxonomyStorage = \Drupal::service('entity.manager')->getStorage('taxonomy_term');
+    $taxonomy = $taxonomyStorage->loadByProperties([
+          'name' => $profile->CountyName,
+          'vid' => 'counties_in_iowa'
+    ]);
     $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
     $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 
-    $mynode->field_staff_profile_college = [['value' => $profile->CollegeName]];
-    $mynode->field_staff_profile_location = [['value' => $profile->Location]];
+    $mynode->field_staff_profile_college->value = $profile->CollegeName;
+    $mynode->field_staff_profile_location->value = $profile->Location;
 
     $mynode->field_staff_profile_region->value = (!empty($profile->ExtensionArea) && (intval($profile->ExtensionArea) > 0)) ? $profile->ExtensionArea : '';
 
     $mynode->field_staff_profile_cty_served = [array()];
     $temp_array = explode(', ', $profile->CountiesServed);
     foreach ($temp_array as $index => $temp_term) {
-      $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'counties_in_iowa');
+      $taxon = $taxonomyStorage->loadByProperties([
+            'name' => $temp_term,
+            'vid' => 'counties_in_iowa'
+      ]);
       if (!empty($taxon) && array_keys($taxon)[0] > 0) {
         $mynode->field_staff_profile_cty_served[] = ['target_id' => array_keys($taxon)[0]];
       }
@@ -174,13 +181,16 @@ function staff_profile_primary_profile_from_database () {
     $mynode->field_staff_profile_pgm_areas = [array()];
     $temp_array = explode(', ', $profile->ProgramAreas);
     foreach ($temp_array as $index => $temp_term) {
-      $taxon = taxonomy_term_load_multiple_by_name($temp_term, 'program_areas');
+      $taxon = $taxonomyStorage->loadByProperties([
+            'name' => $temp_term,
+            'vid' => 'program_areas'
+      ]);
       if (!empty($taxon) && array_keys($taxon)[0] > 0) {
         $mynode->field_staff_profile_pgm_areas[] = ['target_id' => array_keys($taxon)[0]];
       }
     }
 
-    $mynode->set('field_staff_profile_stale', FALSE);
+    $mynode->field_staff_profile_stale->value = FALSE;
     $mynode->setPublished();
     $mynode->save();
 
@@ -189,7 +199,7 @@ function staff_profile_primary_profile_from_database () {
 
   foreach ($nodes as $node) {
     if ($node->get('field_staff_profile_stale')->value) {
-      $node->set('field_staff_profile_stale', FALSE);
+      $mynode->field_staff_profile_stale->value = FALSE;
       $node->setUnpublished();
       $node->save();
     }
