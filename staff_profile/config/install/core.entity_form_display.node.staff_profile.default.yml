@@ -137,9 +137,9 @@ third_party_settings:
       format_type: accordion
       region: content
       format_settings:
-        id: ''
-        classes: ''
         effect: none
+        id: ''
+        classes: staff-profile-web-author-info
       label: 'Web Author Info'
     group_web_author_info_fold:
       children:
@@ -157,8 +157,6 @@ third_party_settings:
         classes: ''
         required_fields: false
       label: 'Web Author Info'
-_core:
-  default_config_hash: UVJMRPZ9BczSTPuRI9m5icT9SXsMPe13wVYlLm05dSk
 id: node.staff_profile.default
 targetEntityType: node
 bundle: staff_profile

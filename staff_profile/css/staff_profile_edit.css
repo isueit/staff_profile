@@ -1,8 +1,14 @@
 fieldset#edit-field-staff-profile-cty-served--wrapper,
+    fieldset#edit-field-staff-profile-cty-author--wrapper,
+    fieldset#edit-field-staff-profile-web-amb--wrapper,
     fieldset#edit-field-staff-profile-teams-groups--wrapper {max-width:900px; display:inline-block; padding:0; margin:0; }
 
 fieldset#edit-field-staff-profile-cty-served--wrapper div.form-group,
     fieldset#edit-field-staff-profile-cty-served--wrapper div.form-type-checkbox,
+    fieldset#edit-field-staff-profile-cty-author--wrapper div.form-group,
+    fieldset#edit-field-staff-profile-cty-author--wrapper div.form-type-checkbox,
+    fieldset#edit-field-staff-profile-web-amb--wrapper div.form-group,
+    fieldset#edit-field-staff-profile-web-amb--wrapper div.form-type-checkbox,
     fieldset#edit-field-staff-profile-teams-groups--wrapper div.form-group,
     fieldset#edit-field-staff-profile-teams-groups--wrapper div.form-type-checkbox {width:165px; float:left; margin:0; font-size:0.9em;}
 
@@ -11,6 +17,7 @@ div#edit-field-staff-profile-cty-served--wrapper--description,
 
 fieldset#staff-profile-from-staff-directory,
     fieldset#staff-profile-from-staff-directory div {background:#ffd}
+div.staff-profile-web-author-info {background:#fbfbf9;}
 
 div.staff_profile_info{border:solid 1px #cc0000; padding:15px; margin-top:5px; max-width:800px;}
 .ui-state-default .ui-icon {float:left; margin-top:1px;}
