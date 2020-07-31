@@ -1,0 +1,38 @@
+<?php
+
+use \Drupal\node\Entity\Node;
+use \Drupal\user\Entity\User;
+
+
+function sync_web_authors_cron() {
+  sync_web_authors_users();
+}
+
+/**
+ * sync remote and local user permissions
+ */
+function sync_web_authors_users() {
+  $config = \Drupal::config('sync_web_authors.settings');
+  if (empty($config->get('sync_url'))) {
+    \Drupal::logger('sync_web_authors')->warning('Need to set a URL for the JSON feed to Sync Users');
+    return;
+  }
+  $nids = \Drupal::entityQuery('user')->execute();
+  $users =  User::loadMultiple($nids);
+
+  $feedurl = $config->get('sync_url');
+
+  $fromFeed = file_get_contents($feedurl);
+  $profiles = json_decode($fromFeed, TRUE);
+  \Drupal::logger('sync_web_authors')->notice(serialize(array_column($user_arr, 'field_staff_profile_netid')));
+
+  foreach ($users as $user) {
+    $feed_user = array_search($user->getUsername(), array_column($user_arr, 'field_staff_profile_netid'));
+    if ($feed_user === FALSE) {
+      $user->block();
+      $has_author = array_search('', array_column($user_arr, 'target_id'));
+    } else {
+
+    }
+  }
+}
