@@ -19,20 +19,48 @@ function sync_web_authors_users() {
   }
   $nids = \Drupal::entityQuery('user')->execute();
   $users =  User::loadMultiple($nids);
+  unset($users[1]); //Remove admin
 
   $feedurl = $config->get('sync_url');
 
   $fromFeed = file_get_contents($feedurl);
   $profiles = json_decode($fromFeed, TRUE);
-  \Drupal::logger('sync_web_authors')->notice(serialize(array_column($user_arr, 'field_staff_profile_netid')));
 
   foreach ($users as $user) {
-    $feed_user = array_search($user->getUsername(), array_column($user_arr, 'field_staff_profile_netid'));
+    $feed_user = array_search($user->getUsername(), array_column($profiles, 'field_staff_profile_netid'));
     if ($feed_user === FALSE) {
-      $user->block();
-      $has_author = array_search('', array_column($user_arr, 'target_id'));
+      $user->block()->save();
     } else {
-
+      $user->activate()->save();
+      unset($profiles[$feed_user]);
     }
   }
+  foreach ($profiles as $feed_profile) {
+    //Need to add email to feed
+    $new_user = User::create();
+    $new_user->setUsername($feed_profile['field_staff_profile_netid']);
+    $new_user->setPassword(pass_string(40));
+    $new_user = $new_user->activate()->save();
+    \Drupal::logger('sync_web_authors')->notice(serialize($new_user));
+  }
+}
+
+function pass_string($strength = 40) {
+  $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ?!@#$%&*()_+-=';
+  $length = strlen($chars);
+  $rand_string = '';
+  try {
+    for ($i=0; $i < $strength; $i++) {
+      $rand_char = $chars[random_int(0, $length-1)];
+      $rand_string .= $rand_char;
+    }
+  } catch (\Exception $e) {
+    //In cases where getrandom(2) or /dev/urandom fails, not cryptographically secure
+    $rand_string = '';
+    for ($i=0; $i < $strength; $i++) {
+      $rand_char = $chars[mt_rand(0, $length-1)];
+      $rand_string .= $rand_char;
+    }
+  }
+  return $rand_string;
 }
