@@ -29,8 +29,10 @@ function sync_web_authors_users() {
   foreach ($users as $user) {
     $feed_user = array_search($user->getUsername(), array_column($profiles, 'field_staff_profile_netid'));
     if ($feed_user === FALSE) {
+      $user->removeRole('content_editor');
       $user->block()->save();
     } else {
+      $user->addRole('content_editor');
       $user->activate()->save();
       unset($profiles[$feed_user]);
     }
@@ -40,6 +42,7 @@ function sync_web_authors_users() {
     $new_user = User::create();
     $new_user->setUsername($feed_profile['field_staff_profile_netid']);
     $new_user->setPassword(pass_string(40));
+    $user->addRole('content_editor');
     $new_user = $new_user->activate()->save();
     \Drupal::logger('sync_web_authors')->notice(serialize($new_user));
   }
