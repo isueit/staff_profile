@@ -154,10 +154,13 @@ function staff_profile_primary_profile_from_database () {
     $mynode->field_staff_profile_fax->value = $profile->Fax;
 
     $taxonomyStorage = \Drupal::service('entity.manager')->getStorage('taxonomy_term');
-    $taxonomy = $taxonomyStorage->loadByProperties([
+    $taxonomy = array();
+    if (!empty($profile->CountyName)) {
+      $taxonomy = $taxonomyStorage->loadByProperties([
           'name' => $profile->CountyName,
           'vid' => 'counties_in_iowa'
-    ]);
+      ]);
+    }
     $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
     $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 

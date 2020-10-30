@@ -130,10 +130,13 @@ function staff_profile_secondary_handle_feeds() {
 
       // Handle the base county
       $taxonomyStorage = \Drupal::service('entity.manager')->getStorage('taxonomy_term');
-      $taxonomy = $taxonomyStorage->loadByProperties([
-          'name' => str_replace('&#039;', '\'', $profile['field_staff_profile_base_county']),
-          'vid' => 'counties_in_iowa'
-      ]);
+      $taxonomy = array();
+      if (!empty($profile['field_staff_profile_base_county'])) {
+        $taxonomy = $taxonomyStorage->loadByProperties([
+            'name' => str_replace('&#039;', '\'', $profile['field_staff_profile_base_county']),
+            'vid' => 'counties_in_iowa'
+        ]);
+      }
       $base_county = (!empty($taxonomy) ? array_keys($taxonomy)[0] : 0);
       $mynode->field_staff_profile_base_county = [['target_id' => $base_county]];
 
