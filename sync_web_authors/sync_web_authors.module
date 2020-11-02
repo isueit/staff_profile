@@ -4,7 +4,17 @@ use \Drupal\node\Entity\Node;
 use \Drupal\user\Entity\User;
 
 
+/**
+* Implements hook_cron().
+*/
 function sync_web_authors_cron() {
+  sync_web_authors_users();
+}
+
+/**
+* Implements hook_rebuild().
+*/
+function sync_web_authors_rebuild() {
   sync_web_authors_users();
 }
 
