@@ -42,7 +42,7 @@ function sync_web_authors_users() {
     $new_user = User::create();
     $new_user->setUsername($feed_profile['field_staff_profile_netid']);
     $new_user->setPassword(pass_string(40));
-    $user->addRole('content_editor');
+    $new_user->addRole('content_editor');
     $new_user = $new_user->activate()->save();
     \Drupal::logger('sync_web_authors')->notice(serialize($new_user));
   }
